@@ -1,0 +1,1239 @@
+[
+   {
+      "name":"Reaction roles",
+      "keywords":[
+         "reaction role",
+         "reaction roll",
+         "reactrole",
+         "reactroll",
+         "react role",
+         "react roll",
+         "role react",
+         "roll react",
+         "react for role",
+         "role menu",
+         "roll menu",
+         "edit",
+         "self role",
+         "selfrole",
+         "swap",
+         "verify",
+         "verification"
+      ],
+      "category":{
+         "name":"Reaction roles",
+         "url":"https://docs.carl.gg/roles/reaction-roles/"
+      },
+      "resources":[
+         {
+            "name":"How to make reaction roles (step-by-step image and video)",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/W2KAAPa.png",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/iaoC0o2nVkuHlarey5Jo2NB-QZH9ZAn1XSXi3w1PEsE/https/i.imgur.com/W2KAAPa.png",
+                  "width":1292,
+                  "height":800
+               },
+               "color":7989244,
+               "type":"rich",
+               "description":"**Or watch this video:** https://vimeo.com/306692543\n**Or see how to do it in the dashboard here:** <https://www.youtube.com/watch?v=O6bfFwnWCg0>",
+               "url":"https://docs.carl.gg/roles/reaction-roles",
+               "title":"Click here for the wiki page on reaction roles"
+            }
+         },
+         {
+            "name":"How to setup verification with reaction roles (step by step video)",
+            "embed":{
+               "url":"https://docs.carl.gg/roles/reaction-roles/",
+               "title":"How to setup verification?",
+               "description":"An easy video guide on how to make a verification reaction role [Click here](https://www.youtube.com/watch?v=U3D9GZFlaQE&feature=youtu.be \"how to set-up verification\") :clapper:",
+               "color":5281535
+            }
+         },
+         {
+            "name":"How to add multiple role/emoji pairs to an existing message",
+            "embed":{
+               "color":4299263,
+               "title":"How to add multiple role/emoji pairs to an existing message",
+               "description":"`!rr addmany` requires you to separate each emoji-role pair with a newline (Shift + Enter), like so ```!rr addmany #reactroles 1238901239812 👼 pure\n💩 fortnite\n😁 league of legends```\nVideo tutorial: https://www.youtube.com/watch?v=58CQzpV01ks"
+            }
+         },
+         {
+            "name":"How to edit reaction roles",
+            "embed":{
+               "footer":{
+                  "text":"More users enlightened.",
+                  "icon_url":"https://cdn.discordapp.com/emojis/810807202993405952.gif",
+                  "proxy_icon_url":"https://images-ext-2.discordapp.net/external/0fJfClJ9MPFJi5xJqsipIC4mW1-13EUzjM0EYzjld20/https/cdn.discordapp.com/emojis/810807202993405952.gif"
+               },
+               "image":{
+                  "url":"https://i.imgur.com/ci7tHpJ.gif",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/bwRBcSCjVGFPOEKMEm0xgNNDkwr5kX7YNf1gGkBxfRM/https/i.imgur.com/ci7tHpJ.gif",
+                  "width":545,
+                  "height":651
+               },
+               "color":12088797,
+               "type":"rich",
+               "description":"**1.** Copy the ID of the message you want to edit! \n> Type `!devmode` or `!id message` in <#456625369974308866> if you need help with that!\n\n**2.** Add/remove your reaction role to the message.\n> `!rr add 4558634369974308866 :emoji: rolename`\n> `!rr remove 4558634369974308866 rolename` roleID or mention works too!\n [How to bulk add reaction roles](https://www.youtube.com/watch?v=58CQzpV01ks)\n\n**3.** Edit the title and description! \n> `!rr edit 4558634369974308866 NewTitle | Your text {roles}` \n`{roles}` will sync the description with the attached reaction roles on the message!\nYou need to separate `Title | Description` with a vertical pipe `|`\nNote that Mentions don't work in Title!\n*You can skip the title by not putting text before the* `|` *character in the command.*",
+               "title":"How to edit reaction roles"
+            }
+         },
+         {
+            "name":"Swap Setup - Add and remove role(s) on the same reaction role",
+            "embed":{
+               "color":4299263,
+               "title":"Swap Setup - Add and remove role(s) on the same reaction role",
+               "description":"`1.` Make a reaction role message with the two roles you want swapped.\n`2.` Mark the message as unique with `!rr unique msg_id`\n`3.` Manually remove the reaction that assigns the role you want removed.\n\nMake sure you have the **Add reactions** permission __disabled__ in the channel, as `!rr channel` creates a channel with these overwrites built in.\n**[▶️ Video Guide 🎬](https://www.youtube.com/watch?v=fRNKwGLKVrg)** "
+            }
+         },
+         {
+            "name":"Reaction Roles Problems? Potential Solutions",
+            "embed":{
+               "author":{
+                  "name":"Reaction Role Problems?"
+               },
+               "fields":[
+                  {
+                     "name":"2. Is there a problem with the RR settings?",
+                     "value":"Confirm that there are no extra requirements accidentally added to the reaction role itself, \nbegin with __!rr show__, then __!rr show <messageID>__ - Screenshot this and send here. [Click here for usage](https://i.imgur.com/MLAw5Pb.png)",
+                     "inline":false
+                  },
+                  {
+                     "name":"3. Is there a problem with the emojis?",
+                     "value":"Carl can use generic discord emojis, emojis within the specific server, or emojis in another server which Carl is also a member of. If it's a custom emoji, you may need to enter the exact emoji ID. \n[Click here to see more](https://discord.com/channels/186980582863929345/805888295053295616/809714955099701248)",
+                     "inline":false
+                  },
+                  {
+                     "name":"4. If we're still out of luck",
+                     "value":"Easiest solution may be to re add them with !rr add or !rr addmany \nBugs may occur with the dashboard RRs which is why commands are better for it.",
+                     "inline":false
+                  }
+               ],
+               "color":5301186,
+               "type":"rich",
+               "description":"By using __!rolediagnose <roleID>__, we'll be able to determine if it's a hierarchy/permissions problem. \nremember, Carl will always respect the hierarchy [Click here for usage](https://i.imgur.com/BB5CR5R.png)",
+               "title":"1. Does Carl have the correct permissions?"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Commands Prefix",
+      "keywords":[
+         "prefix",
+         "symbol"
+      ],
+      "category":{
+         "name":"Configuration",
+         "url":"https://docs.carl.gg/config/prefixes/"
+      },
+      "resources":[
+         {
+            "name":"How to set or add prefixes?",
+            "embed":{
+               "url":"https://carl.gg/",
+               "title":"or here",
+               "description":"1. Go to the Dashboard\n2. Login \n3. Click your server\n4. Use your eyes\n\n[Documentation](https://docs.carl.gg/config/prefixes/)",
+               "image":{
+                  "url":"https://media.discordapp.net/attachments/186980582863929345/575334303928549387/unknown.png"
+               },
+               "author":{
+                  "name":"Click here",
+                  "url":"https://carl.gg/"
+               },
+               "color":5198940,
+               "footer":{
+                  "text":"pic credit: WhoozardHat#0001"
+               }
+            }
+         },
+         {
+            "name":"Default Prefixes",
+            "embed":{
+               "description":"The default prefixes are `?`, `!` and `@Carl-bot#1536` but you can change them as per your wish, with [commands](https://docs.carl.gg/config/prefixes/) or on the [Dashboard](https://carl.gg/).",
+               "color":3092790,
+               "footer":{
+                  "text":"Most straight-forward way: @Carl-bot#1536 prefix add YourPrefixHere"
+               }
+            }
+         }
+      ]
+   },
+   {
+      "name":"Managing Suggestions",
+      "keywords":[
+         "suggest",
+         "approve",
+         "deny",
+         "consider",
+         "implemented"
+      ],
+      "category":{
+         "name":"Suggestions",
+         "url":"https://docs.carl.gg/utilities/suggestions/"
+      },
+      "resources":[
+         {
+            "name":"How to setup suggestions",
+            "embed":{
+               "url":"https://docs.carl.gg/utilities/suggestions/",
+               "title":"How to setup suggestions?",
+               "description":"An easy video guide on how to make suggestions [Click here](https://www.youtube.com/watch?v=v8CfBi6Z0xI&feature=youtu.be \"how to set-up suggestions\") :clapper:",
+               "color":5281535
+            }
+         },
+         {
+            "name":"Approving or Denying suggestions",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/W1a8oW0.png",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/SEDjDkjOv3GpZ4ruZQeaSsYhgALvogS7kiTjMIzyMB4/https/i.imgur.com/W1a8oW0.png",
+                  "width":521,
+                  "height":189
+               },
+               "fields":[
+                  {
+                     "name":"__Approving a suggestion__",
+                     "value":"The `approve` command marks a suggestion as approved.\n> **Syntax:** `!approve ID reason`\n> **Example:** !approve 5 Great idea man, will add it for sure",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Denying a suggestion__",
+                     "value":"The `deny` command denies a suggestion.\n> **Syntax:** `!deny ID reason`\n> **Example:** !deny 6 This is literally impossible due to how Discord works",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Considering a suggestion__",
+                     "value":"The `consider` command marks a suggestion as being considered.\n> **Syntax:** `!consider ID reason`\n> **Example:** !consider 4 I'm not sure if this would really add that much, but if the people want it...",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Implementing a suggestion__",
+                     "value":"The `implemented` command marks a suggestion as implemented.\n> **Syntax:** `!implemented ID reason`\n> **Example:** !implemented 5 the command is !youtubesub",
+                     "inline":false
+                  },
+                  {
+                     "name":"⠀",
+                     "value":"What a suggestion looks like (id underlined):",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "description":"For the following commands, the suggestion ID is required, but reasons are optional. If no reason is provided, the reason will be \"No reason given\".",
+               "url":"https://docs.carl.gg/utilities/suggestions/",
+               "title":"Suggestions Documentation"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Retrieving and using IDs",
+      "keywords":[
+         "role id",
+         "roles id",
+         "emojis id",
+         "emoji id",
+         "user id",
+         "users id",
+         "channel id",
+         "channels id",
+         "mention a role",
+         "mention someone",
+         "mention a member",
+         "mention a user",
+         "mention a channel",
+         "mention role",
+         "mention user",
+         "mention member",
+         "mention channel"
+      ],
+      "category":{
+         "name":"ID",
+         "url":"https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-"
+      },
+      "resources":[
+         {
+            "name":"Mention/highlight elements in reaction roles/embed messages using IDs",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"**How do you ping/highlight things in a reaction role/embed message?**\n\n__User:__ `<@UserID>` like `<@106429844627169280>` = <@106429844627169280>\n__Role:__ `<@&RoleID>` like `<@&445066659800023050>` = <@&445066659800023050> \n__Channel:__ `<#ChannelID>` like `<#465563733981265921>` = <#465563733981265921>\n__Emoji:__ `<(a):EmojiName:EmojiID>` like `<:YEET:454438716610707456>` = <:YEET:454438716610707456>\n*Replace the ElementID with the ID of the element on your server.*\n\n**How to get an element ID?**\n1. Enable Developer Mode: \n> ⚙ `User Settings → Appearance (\"Behavior\" on Mobile) → Developer Mode`\n2. Right click Method:\n> Works for `Users, Roles, Channels, Messages`\n3. For emojis: type the `\\` character before it.\n> `\\YourEmojiHere`, send message and copy output\n\n**__EASIER WAY TO GET IDs:__**\n1. Import [**this custom command**](https://carl.gg/t/120698) on your server\n> More info about it [here](https://discordapp.com/channels/186980582863929345/474346837352906752/678755061261926419)\n2. Use it with `[p]getid <elements>`\n> Replace `[p]` with your server prefix\n3. Copy the bot response"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Embed Messages",
+      "keywords":[
+         "embed",
+         "embed rule",
+         "edit embed",
+         "hyperlink",
+         "hyper link",
+         "hyper text",
+         "named link"
+      ],
+      "category":{
+         "name":"Embeds",
+         "url":"https://docs.carl.gg/utilities/embeds/"
+      },
+      "resources":[
+         {
+            "name":"How to make an embed (step-by-step image and video)",
+            "embed":{
+               "description":"Using the Embed Builder on the [Dashboard](https://carl.gg/)\nI = Icon url⠀⠀⠀⠀⠀⠀⠀⠀ ⠀ T = Thumbnail url\nImage = Image url⠀⠀⠀⠀⠀F = Footer icon\n*Image urls **MUST** be direct image links*\n[Video Tutorial](https://www.youtube.com/watch?v=jUa6YbRC0xU)",
+               "image":{
+                  "url":"https://i.imgur.com/BmdXz6u.png"
+               },
+               "color":5198940
+            }
+         },
+         {
+            "name":"How to edit an advanced embed",
+            "embed":{
+               "title":"How to edit an advanced embed:",
+               "description":"Editing complex embeds can be daunting to users unfamiliar with JSON. Follow these steps:\n\n`1.` Use the `embedsource` command to obtain your embed's content and layout. Copy the JSON Carl-bot outputs.\n`2.` Paste the JSON into the embed builder on [the dashboard](https://carl.gg/) (on the top-right where it says \"Raw JSON\") then click \"Apply\".\n`3.` Make your edits in the embed builder.\n`4.` Click the \"Copy to clipboard\" button on the right side of the builder to copy the JSON for your edited embed.\n`5.` If the JSON is longer than what Discord allows you to put into the text box, paste the raw JSON into a site like [Pastebin](https://pastebin.com/).\n`6.` Use the `ecembed` command to update your embed by using the JSON, or Pastebin link.\n`@Carl-bot#1536 ecembed msg_id #channel_embed_is_in JSON_or_Pastebin_link`\n\nWatch the steps (without the Pastebin link) below:",
+               "image":{
+                  "url":"https://i.imgur.com/19aEtQY.gif"
+               },
+               "color":6413144
+            }
+         },
+         {
+            "name":"Embed Rules (Fields and Markdown)",
+            "embed":{
+               "author":{
+                  "name":"Embed Rules"
+               },
+               "color":16711680,
+               "type":"rich",
+               "description":"•Url fields must be or lead to an HTTP/HTTPS formatted URL.\n•Image fields (Image URL, Thumbnail URL, Icon URL) must be direct image links (end in .png, .jpg, .gif etc)\n•All Title fields, the (Author's) Name field, and the Footer cannot display mentions or named links, and have limited support of markdown formatting.\n•If a field exists, the title and the description must both have values.\n•Must have a value in \"Name\" for \"Icon URL\" to display.\n•Must have a value in \"Name\" for \"Name URL\" to work.\n•Must have a value in \"Title\" for \"Title URL\" to work.\n•Must have a value in \"Footer\" for the \"Footer icon\" to display.\n•In addition to the stated character limits for each field provided below the embed builder's text boxes, the sum of all characters in an embed structure must not exceed 6000 characters.\n•Do not put values in the JSON \"timestamp\": field if you don't know the correct format for them. The correct format is ISO 8601: `yyyy-mm-ddTHH:MM:SS.000Z`"
+            }
+         },
+         {
+            "name":"Hyperlinks (or named links) in Embed Messages",
+            "embed":{
+               "color":41720,
+               "type":"rich",
+               "description":"Inserting the name and URL in the following format:\n`[Name goes here](URL_goes_here \"mouse hover text goes in quotes\")`\n\n__Example__\n`[Dashboard](https://carl.gg/ \"Most dashing dashboard ever\")` would look like:\n[Dashboard](https://carl.gg/ \"Most dashing dashboard ever\")",
+               "title":"In Embed \"Description\" fields, you can create named links by"
+            }
+         },
+         {
+            "name":"Embeds not posting in Tags/Triggers/Autofeeds?",
+            "embed": {"title":"Embeds not posting in Tags/Triggers/Autofeeds?","description":"**0.** If not there already, go on the [Dashboard at carl.gg](https://carl.gg/ \"Carl-bot Dashboard\").\n**1.** On the Embed builder in a Tag/Trigger/Autofeed, you see `Advanced`, click on that, then click `Export`.\n**2.** Now go to the **Embeds** tab, you will see a field called \"Raw JSON\" on the right, paste it there and click `Apply`.\n**3.** Now select a channel to send the embed to and click `Post`. See if it shows any error or posts your embed properly.\n**4.** If it’s showing an error, run `!embedrules` in <#456625369974308866>.","color":12439367}
+         }
+      ]
+   },
+   {
+      "name":"Feeds and Autofeeds",
+      "keywords":[
+         "autofeed",
+         "feed",
+         "announce"
+      ],
+      "category":{
+         "name":"Feeds",
+         "url":""
+      },
+      "resources":[
+         {
+            "name":"Creating and using feeds and announce with them",
+            "embed":{
+               "fields":[
+                  {
+                     "name":"__Step 1: Creating a feed__",
+                     "value":"The `create` subcommand creates a feed.\n> **Syntax:** `!feed create feedname role`\n> **Example:** !feed create mods <@&209797471608635392>",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Step 1.5: Moving a feed__",
+                     "value":"The channel the feed will be associated with is the channel in which it was created. Don't want your announcements sent in that channel? Move it with the `move` subcommand.\n> **Syntax:** `!feed move feedname channel`\n> **Example:** !feed move mods #staff-chat",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Step 2: Using a feed__",
+                     "value":"To use the feed, you use the `announce` subcommand.\n(`announce` is also an alias for `feed announce`)\n> **Syntax:** `!announce feedname your message`\n> **Example:** !announce mods Stop trolling the users with echo.",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Viewing feeds:__",
+                     "value":"You can see a list of all of the feeds on your server by using the `feed` or `feeds` command without any subcommands.",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Deleting feeds:__",
+                     "value":"Say you are done with the feed and you don't need it anymore. To delete it, you use `feed delete`. This does *NOT* delete the channel or the role the feed associates.\n> **Syntax:** `!feed delete feedname`\n> **Example:** !feed delete mods\n\nIt's useful to [combine feeds with tags](https://discordapp.com/channels/186980582863929345/554783406890680331/629497445021253649) to give users that otherwise would not be able to use the announce command permission through `{­override­}` to make announcements to one specific role without needing to give that user the ability to create, move, or delete other feeds.",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "description":"What are feeds? Feeds are a way for you to make announcements and ping a specific role without having to deal with the annoyances and potential abuse from having a mentionable role or manually toggling a role inbetween mentionable and not. You need Manage Server Discord permissions to use the feed commands.\n\nA feed is an association between a role and a channel. When you use the feed announce command, the role will be set to mentionable very briefly, the role will be pinged and your message will be sent in the channel with which the feed is associated, and the role will subsequently be set back to unmentionable.",
+               "url":"https://docs.carl.gg/utilities/announcements/",
+               "title":"Feed Documentation"
+            }
+         },
+         {
+            "name":"My autofeed message disappeared. What to do?",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/7q6sqae.png",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/PSei8G726H6QclzVjO_-SxY5cY3vLYTN0cW2B8l-c_s/https/i.imgur.com/7q6sqae.png",
+                  "width":783,
+                  "height":365
+               },
+               "color":16312092,
+               "type":"rich",
+               "description":"See the yellow box below? That tells Carl-bot when to ***initially*** send your Autofeed message. As the text underlined in yellow states, the date and time you select in that box __must be__ more than **60** seconds from the time you click \"Create\", or your Autofeed __will **not repeat**__ and __will **be deleted**__ after it sends the first time.\n\nWe **strongly** recommend selecting a time in the yellow box that is at least **5 to 10 minutes** ahead of your current time for your Autofeed to be 100% safe from deletion, provided you have set a repeat duration. \n\nThe red box is where you set the repeat duration. The minimum repeat duration is 1 hour, and as the text underlined in red states, if you have selected a role for your Autofeed to mention, that role will not be \"pinged\" if the repeat duration is less than **1 day**.",
+               "title":"Did your Autofeed message disappear?"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Levels **(Premium only)**",
+      "keywords":[
+         "level",
+         "levels"
+      ],
+      "category":{
+         "name":"Levels",
+         "url":"https://docs.carl.gg/levels/levels/"
+      },
+      "resources":[
+         {
+            "name":"Levels information and announcement",
+            "embed":{
+               "footer":{
+                  "text":"Note that Levels are a Premium feature",
+                  "icon_url":"https://cdn.iconscout.com/icon/free/png-512/patreon-1693553-1442594.png",
+                  "proxy_icon_url":"https://images-ext-2.discordapp.net/external/RyBEqM39EuQYhVnG_ui5Cja7DG413ypt4ck8peiFuws/https/cdn.iconscout.com/icon/free/png-512/patreon-1693553-1442594.png"
+               },
+               "color":16345172,
+               "type":"rich",
+               "description":"[🆙 **Levels Announcement**](https://discordapp.com/channels/186980582863929345/443204795910848512/668255238662127618)\n\n__Includes info about:__\n• Background and Colors\n• Levels Reset\n• Levels Log\n\n[Click here for other Levels commands](https://docs.carl.gg/levels/levels/)"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Logging Server Events (Messages, Members, etc.)",
+      "keywords":[
+         "logging",
+         "logs",
+         "log",
+         "modlog"
+      ],
+      "category":{
+         "name":"Logging",
+         "url":"https://docs.carl.gg/logging/logging/"
+      },
+      "resources":[
+         {
+            "name":"How to easily setup the logging system in a single command",
+            "embed":{
+               "title":"really really simple",
+               "description":"Make sure Carl-Bot's role has the \"Manage Webhook\" permission, then do:\n<@!235148962103951360> log AIO\n<@!235148962103951360> modlog create <name> ",
+               "author":{
+                  "name":"Look to make this ",
+                  "url":""
+               },
+               "color":5198940
+            }
+         },
+         {
+            "name":"How to fix your logs with `log vci`",
+            "embed":{
+               "description":"Follow these steps to fix your logs:\n\n1. Make sure **Manage Webhooks** permission is enabled on the Carl-bot role.\n\n2. Use the command `!log vci` to create any missing webhooks.\n\n3. Use the command `!dump` and ignore the text or file it outputs (it's just a list of all your members) this will force the bot to recache your member list. This typically resolves the issue if `!log vci` comes back without errors.",
+               "color":2105893
+            }
+         }
+      ]
+   },
+   {
+      "name":"Mute/Lockdown",
+      "keywords":[
+         "mute",
+         "lock"
+      ],
+      "category":{
+         "name":"Moderation",
+         "url":"https://docs.carl.gg/moderation/moderation/"
+      },
+      "resources":[
+         {
+            "name":"How to Setup Channel Permissions for Mute and Lockdown",
+            "embed":{
+               "fields":[
+                  {
+                     "name":"Verified or Member role(s):",
+                     "value":"__`Read Messages`__ <:GreenTick:699124840879226922>\n__`Send Messages`__ <:GreySlash:699124735208063047>",
+                     "inline":false
+                  },
+                  {
+                     "name":"Mute role:",
+                     "value":"__`Read Messages`__ <:GreySlash:699124735208063047>\n__`Send Messages`__ <:RedTick:699124870352732251>",
+                     "inline":false
+                  },
+                  {
+                     "name":"@everyone role:",
+                     "value":"__`Read Messages`__ <:RedTick:699124870352732251>\n__`Send Messages`__ <:GreySlash:699124735208063047>",
+                     "inline":false
+                  },
+                  {
+                     "name":"⠀",
+                     "value":"> \"I don't want non-verified users talking.\n> Shouldn't I put a <:RedTick:699124870352732251> on __`Send Messages`__ for @everyone?\"\n\nNo. Your non-verified users cannot talk in channels they cannot see.\nTherefore, only the <:RedTick:699124870352732251> on __`Read Messages`__ is necessary. \nFurthermore, a <:GreenTick:699124840879226922> on __`Send Messages`__ for your Verified or Member roles would override the <:RedTick:699124870352732251> on __`Send Messages`__ for the Mute role, preventing the Mute role from actually muting users.",
+                     "inline":false
+                  }
+               ],
+               "title":"How to Setup Channel Permissions for Mute and Lockdown:",
+               "color":6395367
+            }
+         },
+         {
+            "name":"How to setup Lockdown (step by step video)",
+            "embed":{
+               "url":"https://docs.carl.gg/moderation/moderation/",
+               "title":"How to setup lockdown?",
+               "description":"An easy video guide on how to setup lockdown [Click here](https://www.youtube.com/watch?v=gCIsgzWTlpw&t=1s&feature=youtu.be \"how to set-up lockdown\") :clapper:",
+               "color":5281535
+            }
+         }
+      ]
+   },
+   {
+      "name":"User Notes",
+      "keywords":[
+         "notes",
+         "set note",
+         "clear note",
+         "remove note"
+      ],
+      "category":{
+         "name":"Moderation",
+         "url":"https://docs.carl.gg/moderation/moderation/#user-notes"
+      },
+      "resources":[
+         {
+            "name":"Make, view, remove and clear user notes",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/sZe4S7t.png",
+                  "proxy_url":"https://images-ext-1.discordapp.net/external/5Vu13yv7HFMD1PVelR3KLrKP7bhlp6h5maohxIPsmSU/https/i.imgur.com/sZe4S7t.png",
+                  "width":247,
+                  "height":88
+               },
+               "fields":[
+                  {
+                     "name":"__Making a note__",
+                     "value":"The `setnote` command assigns the note to the member specified.\n> **Syntax:** `!setnote @member note`\n> **Example:** !setnote @Carl#0001 is awesome!",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Viewing notes__",
+                     "value":"The `notes` command displays all of a specified member's notes.\n> **Syntax:** `!notes @member`\n> **Example:** !notes @Carl#0001",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Removing notes__",
+                     "value":"The `removenote` command removes a note by its note id\n> **Syntax:** `!removenote note_id`\n> **Example:** !removenote 6",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Clearing a member's notes__",
+                     "value":"The `clearnotes` command removes all notes from a member.\n> **Syntax:** `!clearnotes @member`\n> **Example:** !clearnotes @Carl#0001",
+                     "inline":false
+                  },
+                  {
+                     "name":"​",
+                     "value":"What a note looks like (id is circled):",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "description":"Do **NOT** turn \"Delete Invocation\" on for the setnote command. The invocation is deleted by default, and turning that setting on may result in an error. All note commands require the user to have 'Manage Server' Discord server permission."
+            }
+         }
+      ]
+   },
+   {
+      "name":"Overrides",
+      "keywords":[
+         "override",
+         "overwrite",
+         "blacklist",
+         "whitelist"
+      ],
+      "category":{
+         "name":"Config - Managing commands",
+         "url":"https://docs.carl.gg/config/command-permissions/"
+      },
+      "resources":[
+         {
+            "name":"Channel overrides are simple!",
+            "embed":{
+               "color":5198940,
+               "type":"rich",
+               "description":"It follows the hierarchy <:GreenTick:699124840879226922> > <:RedTick:699124870352732251> > <:GreySlash:699124735208063047> meaning that if a member has 6 overrides affecting them, with 5 of them being explicit denies and one being an explicit allow, it counts as an allow.\nThe order of the overrides does **__not__** matter.\n__Related Videos:__\n[Lengthy Talk on Overrides](https://www.youtube.com/watch?v=l_EqSBWuC5E)\n[tl;dr Talk on Overrides](https://www.youtube.com/watch?v=u7roBtU6thA)",
+               "title":"Channel overrides are simple!"
+            }
+         },
+         {
+            "name":"Full Guide to Carl-bot Command Override",
+            "embed":{
+               "footer":{
+                  "text":"¹Provided said command is enabled, neither the command nor the bot are flagged as \"Mod Only\", Carlbot can see the channel it was issued in, and the command does not require Discord-specific permissions by default which must be overridden separately."
+               },
+               "fields":[
+                  {
+                     "name":"***In the context of Carlbot commands, there are:***",
+                     "value":"> 1) Roles and channels that ignore any other overrides (#2-4).\n> 2) Global blacklists for both channels and roles.\n> 3) Per-command blacklists for both channels and roles.\n> 4) Per-command whitelists for both channels and roles.\nThese overrides are followed in a top-down order. \nSo #1 > #2-4, #2 > #3-4, and #3 > #4.\n#1 and #2 can be found in the Global Settings tab of the Commands menu on the [Dashboard](https://carl.gg/). #3 and #4 are found in specific command settings on the dashboard by clicking the gear icon for any given command.",
+                     "inline":false
+                  },
+                  {
+                     "name":"***What do those mean? Here are the rules:***",
+                     "value":"> #1: Carlbot *will* acknowledge any command issued either by a user with a role listed as ignoring overrides, or in a channel listed as ignoring overrides.¹\n> #2: Carlbot *will not* acknowledge any command issued either by a user with a role on the global blacklist, or in a channel on the global blacklist.\n> #3: Carlbot *will not* acknowledge a specific command issued either by a user with a role on that command's blacklist, or in a channel on that command's blacklist.\n> #4: Carlbot *will only* acknowledge a specific command when it is issued either by a user with a role on that command's whitelist, or in a channel on that command's whitelist.¹",
+                     "inline":false
+                  }
+               ],
+               "color":6461183,
+               "type":"rich",
+               "description":"> A __Blacklist__ refers to the testing of a desired input against a list of negative attributes. Inputs matching *ANY* negative attributes are ignored or excluded.\n> A __Whitelist__ refers to the testing of a desired input against a list of possible correct attributes. *ONLY* inputs matching a correct attribute are accepted.\nUsually whitelists and blacklists are used exclusively, not in conjunction.",
+               "title":"**Guide to Carlbot Command Overrides**"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Polls",
+      "keywords":[
+         "polls",
+         "poll"
+      ],
+      "category":{
+         "name":"Information/Polls",
+         "url":"https://docs.carl.gg/utilities/info-polls/#polls"
+      },
+      "resources":[
+         {
+            "name":"Guide to Carl-bot Poll, Quickpoll and Strawpoll",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/R5qTD34.png",
+                  "proxy_url":"https://images-ext-1.discordapp.net/external/hXNdegy75P8PsgzXtmqEKTsJivXAfmgE6zJcXEW64Eo/https/i.imgur.com/R5qTD34.png",
+                  "width":1269,
+                  "height":542
+               },
+               "color":5198940,
+               "type":"rich",
+               "title":"Guide to Carlbot Polls:"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Ranks (Self-assignable roles)",
+      "keywords":[
+         "ranks",
+         "rank"
+      ],
+      "category":{
+         "name":"Role Management - Ranks",
+         "url":"https://docs.carl.gg/roles/role-management/#rank-commands"
+      },
+      "resources":[
+         {
+            "name":"Adding, viewing and using ranks ",
+            "embed":{
+               "footer":{
+                  "text":"Roles with spaces, emojis, or symbols should be surrounded with quotation marks, mentioned, or referred to by role id."
+               },
+               "fields":[
+                  {
+                     "name":"__Authorizing roles__",
+                     "value":"The `addrank` command adds a role to the ranks system so it can be self-assigned. The command user must have 'Manage Roles' permission, and both the command user and the bot must be able to add the role to other users (both must be higher in the hierarchy than the target role). \\**See footnote*.\n> **Syntax:** `!addrank role(s)`\n> **Example:** !addrank Orange Yellow Green Purple Red Cyan Pink \"Seafoam Green\"",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Viewing ranks__",
+                     "value":"The `ranks` command displays all roles that have been authorized for self-assignment.",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Using ranks__",
+                     "value":"Users can add or remove ranks from themselves with the `rank` coammand:\n> **Syntax:** `!rank role`\n> **Example:** !rank Green\nand with the `rank custom` command.\n> **Syntax:** `!rank custom +RoleToAdd -RoleToRemove`\n> **Example:** !rank custom +Red +Pink -Green",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Deauthorizing roles__",
+                     "value":"The `removerank` command removes a role from the ranks system so it can no longer be self-assigned. The command user must have 'Manage Roles' permission, and both the command user and the bot must be able to add the role to other users (both must be higher in the hierarchy than the target role). \\**See footnote*.\n> **Syntax:** `!removerank role(s)`\n> **Example:** !removerank Yellow \"Seafoam Green\" Cyan",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "description":"Ranks are roles that have been authorized by a server Admin or Moderator for self-assignment through the use of the `rank` command by users. This system is similar to `iam` commands in other bots.",
+               "url":"https://docs.carl.gg/roles/role-management/",
+               "title":"Ranks Documentation"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Say things with the bot",
+      "keywords":[
+         "say",
+         "echo",
+         "cembed"
+      ],
+      "category":{
+         "name":"Miscellaneous",
+         "url":"https://docs.carl.gg/fun/miscellaneous/"
+      },
+      "resources":[
+         {
+            "name":"How to \"say things\" with Carl-bot (echo, embed, cembed)",
+            "embed":{
+               "fields":[
+                  {
+                     "name":"__Sending a regular message__",
+                     "value":"The `echo` command makes the bot say something in the specified channel with a regular message.\n> **Syntax:** `!echo #channel message`\n> **Example:** !echo <#186980582863929345> Hello world",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Sending a simple embed__",
+                     "value":"The `embed` command creates an embed with the specified hex color in the specified channel, containing a title and/or description. Separate the title from the description with a vertical pipe `|`.\n> **Syntax:** `!embed #channel #HEXCLR Title|Description`\n> **Example:** !embed <#186980582863929345> #ABCDEF Hello|world",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Sending a complex embed__",
+                     "value":"The `customembed` (or `cembed`) command posts an embed in a specified channel based on the raw JSON Discord uses. If this confuses you, use the embed builder on the website instead, please!\n> **Syntax:** `!cembed #channel {JSON}`\n> **Example:** !cembed <#186980582863929345> {\"description\":\"Hello world\",\"color\":2105893}",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Sending messages with the Dashboard's Embed Builder__",
+                     "value":"The [Dashboard](https://carl.gg/)'s Embed Builder can send both regular messages and embeds to the specified channel. Accessing a server's dashboard requires having Manage Server permission in that server.",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "title":"How to \"say things\" with Carl-bot:"
+            }
+         }
+      ]
+   },
+   {
+      "name":"User Stats",
+      "keywords":[
+         "stats",
+         "youngest",
+         "oldest",
+         "dump"
+      ],
+      "category":{
+         "name":"Information",
+         "url":"https://docs.carl.gg/utilities/info-polls/#information"
+      },
+      "resources":[
+         {
+            "name":"Displaying User Demographics (youngest and oldest accounts) + dump command",
+            "embed":{
+               "fields":[
+                  {
+                     "name":"__Account Age Lists:__",
+                     "value":"The two commands `youngest` and `oldest` will respectively display the member accounts on a server which were created most or least recently. The count parameter is how many members to list, and can only be up to 25.\n> **Syntax:** `!youngest count`\n> **Syntax:** `!oldest count`\n> **Example:** !youngest 10\n> **Example:** !oldest 15",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Server Age Lists:__",
+                     "value":"The two commands `newusers` (or `newmembers`) and `oldusers` (or `oldmembers`) will respectively display the member accounts on a server which joined that server most or least recently. The count parameter is how many members to list, and can only be up to 25.\n> **Syntax:** `!newusers count`\n> **Syntax:** `!oldusers count`\n> **Example:** !newusers 10\n> **Example:** !oldusers 15",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Custom Lists:__",
+                     "value":"You can use the [Dump command](https://docs.carl.gg/utilities/dump/ \"Dump Documentation\") to output member lists with a large amount of customization, from your choice of information, separators, enumeration and date formatting, and custom limits. It can also be specified for certain roles, combinations of roles, or members without roles. Click on the link to for instructions.",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "description":"Due to the size of the messages these commands output, they all require Manage Messages permission to be used in a server.",
+               "title":"Displaying User Demographics"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Voice Link **(Premium only)**",
+      "keywords":[
+         "voice link",
+         "voicelink",
+         "vc role",
+         "role in vc"
+      ],
+      "category":{
+         "name":"Voice Links",
+         "url":"https://carl.gg/"
+      },
+      "resources":[
+         {
+            "name":"Get a role when joining a voice channel!",
+            "embed":{
+               "color":41720,
+               "type":"rich",
+               "description":"Join Linked Voice Channel → Gain Linked Role\nLeave Linked Voice Channel → Lose Linked Role\nUseful for music command channels being hidden until the user is in the music voice room, giving voice channels a linked text channel for no-mic users, and more.\n\nConfigure on your server's [Dashboard](https://carl.gg/).",
+               "url":"https://www.patreon.com/carlbot",
+               "title":"Voice Links: (Premium Only)"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Warnings",
+      "keywords":[
+         "warn"
+      ],
+      "category":{
+         "name":"Moderation - Managing Warns",
+         "url":"https://docs.carl.gg/moderation/moderation/#managing-warns"
+      },
+      "resources":[
+         {
+            "name":"Warn a member or list, remove or clear their warnings",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/ZzzynMm.png",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/7-h5a4DzysQw3U9TnJos6-uqv8gQU9RuxYCG6iGFE-8/https/i.imgur.com/ZzzynMm.png",
+                  "width":333,
+                  "height":114
+               },
+               "fields":[
+                  {
+                     "name":"__Warning a member__",
+                     "value":"The `warn` command warns a member with an optional reason argument.\n> **Syntax:** `!warn <member> [reason]`\n> **Example:** !warn @Carl#0001 do not spam reactions",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Listing warns__",
+                     "value":"The `warns` command lists all current warnings in the server. Specify a member to see all of their warnings.\n> **Syntax:** `!warns [member]`\n> **Example:** !warns @Carl#0001",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Removing a warning__",
+                     "value":"The `removewarn` command removes a single warning. Specify which using the case id.\n> **Syntax:** `![removewarn|removewarning] <case_id>`\n> **Example:** !removewarn 17",
+                     "inline":false
+                  },
+                  {
+                     "name":"__Clearing all warnings from a member__",
+                     "value":"The `clearwarn` command removes all warnings from a member.\n> **Syntax:** `![clearwarn|clearwarnings] <member>`\n> **Example:** !clearwarn @Carl#0001",
+                     "inline":false
+                  },
+                  {
+                     "name":"​",
+                     "value":"What a warning looks like in modlogs (case_id underlined):",
+                     "inline":false
+                  }
+               ],
+               "color":7506394,
+               "type":"rich",
+               "description":"For the following commands, `|` indicates a command alias, `< >` indicates a necessary argument, `[ ]` indicates an optional argument. Do not include any of those symbols in the invocation.",
+               "url":"https://docs.carl.gg/moderation/moderation/",
+               "title":"Moderation Documentation"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Starboard",
+      "keywords":[
+         "starboard",
+         "star board"
+      ],
+      "category":{
+         "name":"Utilities - Starboard",
+         "url":"https://docs.carl.gg/utilities/starboard/"
+      },
+      "resources":[
+         {
+            "name":"What is Starboard?",
+            "embed":{
+               "color":4289797,
+               "type":"rich",
+               "description":"It's like democratic pins. After you make a Starboard channel, users can react to a message with a ⭐ to 'vote' to display that post on the starboard. Once the message gets enough ⭐ reactions, Carlbot posts it onto the starboard. By default, a user's ⭐ reaction on their own post doesn't count.\n\nExample Starboard: <#465204808861745152>\n[CLICK HERE FOR THE WIKI PAGE](https://docs.carl.gg/utilities/starboard/)",
+               "title":"What is Starboard?"
+            }
+         },
+         {
+            "name":"Issues with Starboard? Answer these questions!",
+            "embed":{
+               "description":"**Issues with Starboard? Answer these questions!**\n• Have you tried using the dashboard instead?\n• Are you reacting to the message with your own star?\n• What star are you using to react with it?\n• Does the bot have posting permissions in the starboard channel and viewing permissions in the channel the message is originally from?\n• How many stars are being put onto the message that are NOT your own?",
+               "color":16767050
+            }
+         }
+      ]
+   },
+   {
+      "name":"Music",
+      "keywords":[
+         "music"
+      ],
+      "category":{
+         "name":"Music",
+         "url":"https://docs.carl.gg/music/music/"
+      },
+      "resources":[
+         {
+            "name":"Music Issue (Broken)",
+            "embed":{
+               "color":5203894,
+               "type":"rich",
+               "description":"If you notice the music feature is not working as intended, it is because YouTube has been rate limiting Discord bots, including Carl-bot.\n\nSince it's more on YouTube's end, don't expect anything to change soon.\nIn the meantime, using Music-dedicated bots might be the solution, as they have more resources to do a workaround and keep better uptime with that specific feature.\n\nThis feature has been confirmed to be on the list of features to be removed during the rewrite of the bot. It is also no longer on the list of perks for patron users. \n\nStay tuned for eventual information about it. You can assign the `announce` role to yourself in <#445066482502729728> to get pinged for new bot announcements, and\/or follow the <#443204795910848512> channel directly in your server.",
+               "title":"Music Issue"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Welcome/Leave Messages",
+      "keywords":[
+         "welcome",
+         "leave",
+         "greet",
+         "testgreet",
+         "farewell"
+      ],
+      "category":{
+         "name":"Welcome and leave messages",
+         "url":"https://docs.carl.gg/logging/welcome-messages/"
+      },
+      "resources":[
+         {
+            "name":"Take less than 15 minutes, learn to do it all",
+            "embed":{
+               "color":8311585,
+               "type":"rich",
+               "description":"**[Custom DM on Join](https://youtu.be/S2rvV72O4tA)**\n**[Custom Welcome/Leave Messages](https://youtu.be/BkRvzJUoAdw)**\n**[Custom Ban Message](https://youtu.be/UBJ7BkJgd7w)**\n\n**[Text Documentation](https://docs.carl.gg/logging/welcome-messages/)**",
+               "title":"Take less than 15 minutes, learn to do it all:"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Twitch (Broken currently)",
+      "keywords":[
+         "twitch",
+         "stream"
+      ],
+      "category":{
+         "name":"Notifications - Twitch",
+         "url":"https://docs.carl.gg/notifications/twitch/"
+      },
+      "resources":[
+         {
+            "name":"Twitch Issues (wondering why it's not working?)",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/6zW7UXm.png",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/nn-oWawyzgu3UGZUmQdTvSCux-pwOuStfow3pIYzYeo/https/i.imgur.com/6zW7UXm.png",
+                  "width":587,
+                  "height":162
+               },
+               "fields":[
+                  {
+                     "name":"‎",
+                     "value":"Wondering why your added streamer isnt being announced? See below.",
+                     "inline":false
+                  }
+               ],
+               "color":5198940,
+               "type":"rich",
+               "description":"Currently, Carl-bot's Twitch module (!twitch and !twitch add) is unable to find Twitch channels by name or by direct Twitch URLs. Attempting to add a Twitch stream will result in a \"Could not find that channel\" output.",
+               "title":"Twitch Issues"
+            }
+         }
+      ]
+   },
+   {
+      "name":"Automod (Automatic Moderation)",
+      "keywords":[
+         "automod",
+         "auto mod",
+         "bad link",
+         "bad invite",
+         "delete invite",
+         "invites",
+         "bad words",
+         "badwords",
+         "censor",
+         "spam",
+         "slowmode",
+         "mentionspam",
+         "attachment",
+         "threshold",
+         "scary",
+         "scary file",
+         "punishment",
+         "punish after",
+         "drama"
+      ],
+      "category":{
+         "name":"Automod",
+         "url":"https://docs.carl.gg/moderation/automod/"
+      },
+      "resources":[
+         {
+            "name":"Bad Links",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Bad Links**__\nThis setting determines how Carl-bot reacts to URLs users send in chat. It has 3 modes: \n> **Blacklist** maintains a list of domains and any time a user posts a link matching one of those domains Carl-bot will enact the specified punishments.\n> **Whitelist** maintains a list of domains and any time a user posts a link that doesn't match one of the listed domains Carl-bot will enact the specified punishments.\n> **No Roles** is similar to whitelist. It maintains a list of domains and any time a user that does not have any roles posts a link that doesn't match one of the listed domains Carl-bot will enact the specified punishments.\n\nThe \"Punish After\" rate must be set to at least 1+ link(s) in 1+ second(s) for this setting to be active.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Bad Invites",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Bad Invites**__\nThis setting determines how Carl-bot reacts to Discord Server Invites users send in chat. It does not apply to Vanity URLs. It has 3 modes: \n> **Blacklist** maintains a list of server IDs and any time a user posts an invite leading to one of those servers Carl-bot will enact the specified punishments.\n> **Whitelist** maintains a list of server IDs, and any time a user posts an invite that doesn't lead to one of those servers, Carl-bot will enact the specified punishments.\n> **No Roles** is similar to whitelist. It maintains a list of server IDs, and any time a user that does not have any roles posts an invite that doesn't lead to one of those servers Carl-bot will enact the specified punishments.\n\nThe \"Punish After\" rate must be set to at least 1+ invite(s) in 1+ second(s) for this setting to be active.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Bad words",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Bad Words**__\nThis setting determines how Carl-bot reacts to specific words within messages users send in chat. When a word on the Bad Words list is sent in a message, Carl-bot will enact the specified punishments. Detection is case insensitive, ignores punctuation, and looks for substrings. This means if \"ass\" is added to the list of Bad Words, a user saying, \"I **ass**ume this means you want coffee\" will trigger the Bad Words automod setting.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Spam (Custom slowmode)",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Spam**__\nThis setting determines how Carl-bot reacts to the frequency with which a user sends messages. If a user sends messages more frequently than the rate set, Carl-bot will enact the specified punishments.\n\nThe \"Punish After\" rate must be set to at least 1+ message(s) in 1+ second(s) for this setting to be active.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Mentionspam",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Mentionspam**__\nThis setting determines how Carl-bot reacts to the frequency with which a user mentions other users or roles. If a user mentions other users or roles more frequently than the rate set, Carl-bot will enact the specified punishments. Multiple mentions of the same user or role inside a singular message will only be counted as one mention.\n\nThe \"Punish After\" rate must be set to at least 1+ mention(s) in 1+ second(s) for this setting to be active.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Attachment(s) spam",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Attachmentspam**__\nThis setting determines how Carl-bot reacts to the frequency with which a user sends attachments through Discord. If a user attaches images or files more frequently than the rate set, Carl-bot will enact the specified punishments.\n\nThe \"Punish After\" rate must be set to at least 1+ file(s) in 1+ second(s) for this setting to be active.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Warn threshold",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Warn Threshold**__\nThis setting determines how Carl-bot reacts when a user receives a new warning and their new total number of warnings exceeds a set limit. Only one limit can be set. This setting has limited punishment options. Unless a user's warnings are reset or reduced manually, this punishment will trigger each time a user receives a new warning while their total number of warnings is above the limit. This setting is turned off when the threshold is set to 0.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Delete scary files",
+            "embed":{
+               "color":7506394,
+               "type":"rich",
+               "description":"Automod rules only apply in channels Carl-bot can see that are not on the \"Whitelisted Channels\" list. The server Owner, server Administrators, and any users with __Manage Server__ permissions will be immune to Carl-bot's automod. Automod is best configured on the [Dashboard](https://carl.gg/).\n\n__**Delete Scary Files**__\nThis setting toggles between deleting certain files users upload and not deleting any files. \"Safe\" file formats include `png`, `jpg`, `jpeg`, `webm`, `mp4`, `gif`, `bmp`, `pdf`, `txt`, `tif`, `svg`, `webp`, `mp3`, `flac`, `wav`.",
+               "url":"https://docs.carl.gg/moderation/automod/",
+               "title":"Carl-bot's Automod Rules:"
+            }
+         },
+         {
+            "name":"Drama Feature (defer) **(Premium only)**",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/hQjbM4G.png",
+                  "proxy_url":"https://images-ext-2.discordapp.net/external/6xIQADGNhqTmx0GtC68-ZwXPWeMP27I0tWXqJ_2Rgms/https/i.imgur.com/hQjbM4G.png",
+                  "width":1200,
+                  "height":324
+               },
+               "author":{
+                  "name":"Automod feature (premium only)",
+                  "url":"https://docs.carl.gg/moderation/automod/"
+               },
+               "color":5198940,
+               "type":"rich",
+               "description":"When you have your automod settings to \"defer\", it will send the offending message to the drama channel where you can decide what the punishment suitable is through the use of reactions. This channel should obviously not be made public."
+            }
+         }
+      ]
+   },
+   {
+      "name":"Managing Carl-bot Premium",
+      "keywords":[
+         "premium",
+         "patreon",
+         "patron"
+      ],
+      "category":{
+         "name":"Carl-bot Premium",
+         "url":"https://www.patreon.com/carlbot"
+      },
+      "resources":[
+         {
+            "name":"Carl-bot's Patreon perks",
+            "embed":{
+               "title":"Perks for Donating to Carl-Bot!",
+               "description":"Voice-Linked Roles\nTemporary Reaction Roles\nLevels\nMultiple Command Blocks in a Single Tag\nAccurate Autofeed Timings\nHigher Rate Limits Overall\nHigher Purge Limits\nAudit Log Fetches for Bans\nDrama Watcher Channel\n__AND MORE!__\n\nNot to mention that you get access to _special VIP features_ in Carl-Bot Help, such as VIP support! Also, you can receive a special custom color in the server!\n\nSo what are you waiting for? Check out [Carl-Bot's Patreon](https://www.patreon.com/carlbot) today!",
+               "color":16345172
+            }
+         },
+         {
+            "name":"How to link your Discord account to Patreon",
+            "embed":{
+               "title":"How to link your Discord account to Patreon.",
+               "description":"**0.** If you have any alt accounts, visit [Discord](https://discordapp.com/) (in a web browser) and make sure you are logged in to the correct account.\n**1.** Go to [Patreon's page for linking apps](https://www.patreon.com/settings/apps) and click the Connect button next to the Discord icon.\n**2.** Click this link to force the update. https://carl.gg/api/v1/oauth/gotopatreon\n**3.** If step 2 didn't work, edit anything at all on your Patreon profile\\*, or wait at least 10 minutes.\n**4.** If the bot has not DM'd you by now, ask for help in <#522912712955658255> or <#465563733981265921>.",
+               "color":16345172,
+               "footer":{
+                  "text":"*Editing your Patreon profile forces Patreon to update and send your new membership info to Carl-bot"
+               }
+            }
+         },
+         {
+            "name":"Managing your Carl-bot Premium",
+            "embed":{
+               "fields":[
+                  {
+                     "name":"addpremium",
+                     "value":"Grants Carl-bot premium to the server the command is used in, provided you have not assigned premium to the maximum number of servers your Patreon membership allows. Once added, it allows for music commands and other patron perks to be used in that server.\n`!addpremium`",
+                     "inline":false
+                  },
+                  {
+                     "name":"listpremium",
+                     "value":"Lists the server ids you have assigned Carl-bot premium to, and a timestamp of when you did so.\n`!listpremium`",
+                     "inline":false
+                  },
+                  {
+                     "name":"removepremium [server_id]",
+                     "value":"Removes Carl-bot premium from the server ID you provide in the invocation. If you do not provide a server ID, it will attempt to remove premium from the server the command is used in.\n`!removepremium 186980582863929345`",
+                     "inline":false
+                  }
+               ],
+               "title":"Managing your Carl-bot Premium",
+               "color":16345172,
+               "footer":{
+                  "text":"Thank you for your support! Use !patronperks in CBH to see what else Carl-bot premium has to offer."
+               }
+            }
+         }
+      ]
+   },
+   {
+      "name":"Dashboard Issues",
+      "keywords":[
+         "banned",
+         "website ban",
+         "dashboard",
+         "panel",
+         "website",
+         "the owner of this website"
+      ],
+      "category":{
+         "name":"Dashboard",
+         "url":"https://carl.gg/"
+      },
+      "resources":[
+         {
+            "name":"I'm Dashboard banned? What to do?",
+            "embed":{
+               "footer":{
+                  "text":"Sorry for the inconvenience!",
+                  "icon_url":"https://cdn.discordapp.com/icons/186980582863929345/a_142bfab7913a33d06030d6a1afdc1e17.png?size=1024",
+                  "proxy_icon_url":"https://images-ext-1.discordapp.net/external/hLsiQHReUiydT0oiZSny4V1C5B5R4NfPw4gbswho_vY/%3Fsize%3D1024/https/cdn.discordapp.com/icons/186980582863929345/a_142bfab7913a33d06030d6a1afdc1e17.png"
+               },
+               "image":{
+                  "url":"https://cdn.discordapp.com/attachments/465563733981265921/751255878308724786/f0c87af3c0c156514a7c944b472cc399.png",
+                  "proxy_url":"https://media.discordapp.net/attachments/465563733981265921/751255878308724786/f0c87af3c0c156514a7c944b472cc399.png",
+                  "width":595,
+                  "height":115
+               },
+               "fields":[
+                  {
+                     "name":"What you can do:",
+                     "value":"We cannot control the rate limiting of dashboard, so asking us to unban you is useless. What you **can**  do is try signing out and back into Discord and/or using a different browser. The bans __time out__, but we have no way of knowing how long it will take for yours to be up. \n\nAll commands are still available and functional in your server, and you can use them to set up or change *most* settings in the server.\n> If you were trying to invite the bot and got hit with this message, having someone else in your server (with proper perms) use the invite link instead can sometimes skip this prompt.",
+                     "inline":false
+                  }
+               ],
+               "color":5490241,
+               "type":"rich",
+               "description":"You are **not** actually banned from the website.\nThis is a left over from issues the bot was having late last month, and it's still being sorted out.",
+               "title":"I'm Dashboard banned?"
+            }
+         },
+         {
+            "name":"I can't see my server on the dashboard!",
+            "embed":{
+               "title":"Missing Dashboard Access",
+               "description":"If you have just added Carl-bot to your server or just given a member access to the dashboard, it can take some time to show up on the servers list of the dashboard. In the meantime, you can use [commands](https://docs.carl.gg/).\n\nThe **only** way to give a member access to the dashboard is by giving them the Manage Server permission.",
+               "color":13632027
+            }
+         }
+      ]
+   },
+   {
+      "name":"Carl-bot hacked",
+      "keywords":[
+         "hacked",
+         "leaked",
+         "token"
+      ],
+      "category":{
+         "name":"Miscellaneous",
+         "url":""
+      },
+      "resources":[
+         {
+            "name":"You think Carl-bot is hacked?",
+            "embed":{
+               "title":"**__Carl-bot HAS NOT been hacked.__**",
+               "description":"__One of the following has happened in your server:__\n 1. Someone is using the `!echo` command to have carl-bot repeat what they are saying to annoy you. (Can be applied to multiple channels.)  It is highly suggested you do two things. \n\n> First run the command `!modonly echo`. \n\n> Then check your logs to see who was spamming the echo command. (If you don't have message logs setup, now is a good time to do this.)\n\n2. You have given webhook perms to a role in your server and it is being abused. This would post from an outside source to a specific channel to annoy you. [Webhooks Explained!](https://canary.discord.com/channels/186980582863929345/554783406890680331/735847442490327141)\n\n3. Dashboard Embed Builder is being used by a staff member who has Manage Server perms. \n\n4. Autoresponses (Triggers) have been setup by someone without your knowledge. Make sure to delete any triggers you did not approve.",
+               "author":{
+                  "name":"Sounds like you believe Carl-Bot was Hacked!"
+               },
+               "color":13632027
+            }
+         },
+         {
+            "name":"You think Carl-bot's token was leaked?",
+            "embed":{
+               "image":{
+                  "url":"https://i.imgur.com/u7nwN8L.jpg",
+                  "proxy_url":"https://images-ext-1.discordapp.net/external/DPsduk_M5rR2egHkafkIgFg2WoH3BGny3l5Gi1wSYrs/https/i.imgur.com/u7nwN8L.jpg",
+                  "width":616,
+                  "height":199
+    },
+               "title":"FAKE NEWS CARL-BOT IS FINE",
+               "description":"No, the bot's token has not been leaked. The bot is safe to continue to use.\n\nThe image circulating below is fake and intended to create fear and spread doubt.",
+               "color":13632027
+            }
+         }
+      ]
+   }
+]

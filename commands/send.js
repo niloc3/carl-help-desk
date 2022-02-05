@@ -13,7 +13,8 @@ module.exports = {
 message.reply('Help Desk Sent Below')
 const embed = new MessageEmbed()
   .setTitle('Carl-Bot Help Desk')
-  .setDescription('Click the button below to start an interactive help desk.')
+  .setColor(0x5865F2)
+  .setDescription('Click the button below to start an interactive help desk. From there you will be able to select a category and then find specifici specific resources about it.')
 
 		const row = new MessageActionRow()
 			.addComponents(

@@ -16,10 +16,7 @@ console.log('Server started at port: ' + port);
 
 const fs = require('fs');
 const Discord = require("discord.js");
-const axios = require("axios");
 const { Client, MessageEmbed, Intents } = require("discord.js");
-const backup = require("discord-backup")
-const schedule = require('node-schedule');
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
@@ -43,8 +40,10 @@ const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
+    console.log(event.name)
 		client.once(event.name, (...args) => event.execute(...args, client, Discord));
 	} else {
+    console.log(event.name)
 		client.on(event.name, (...args) => event.execute(...args, client, Discord));
 	}
 }

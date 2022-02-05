@@ -39,39 +39,44 @@ module.exports = {
             /////////////////////////////////////////
             if (interaction.componentType == 'SELECT_MENU') {
                 if (interaction.customId == 'category') {
-                    const selects = data[interaction.values[0]].resources.map((u, i) => JSON.parse(`{"label":"${u.name}", "value":"${interaction.values[0]}-${i}"}`))
-                    const categoryEmbed = new MessageEmbed()
-                        .setColor(0x5865F2)
-                        .setTitle(data[interaction.values[0]].name)
-                        if (data[interaction.values[0]].category.url) {
-                          categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. To view the docs for this category click [here](${data[interaction.values[0]].category.url}). To view help on a specific issue you may have, use the select menu below.`)
-                        } else {
-                          categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. There is no specific page on the docs for this category but you should still check out the general docs [here](https://docs.carl.gg). To view help on a specific issue you may have, use the select menu below.`)
-                        }
-                        
-                     var categoryRow = new MessageActionRow()
-                        .addComponents(
-                            new MessageSelectMenu()
-                            .setCustomId('resources')
-                            .setPlaceholder('Nothing selected')
-                            .addOptions(selects),
-
-                        );
-                     var categoryRow2 = new MessageActionRow()
+                    var categoryRow2 = new MessageActionRow()
                         .addComponents(
                             new MessageButton()
                             .setCustomId('back')
                             .setStyle('SECONDARY')
                             .setLabel('Back')
-
                         );
-                    interaction.update({
-                        embeds: [categoryEmbed],
-                        components: [categoryRow, categoryRow2],
-                        ephemeral: true
-                    })
-                }
+                    const selects = data[interaction.values[0]].resources.map((u, i) => JSON.parse(`{"label":"${u.name}", "value":"${interaction.values[0]}-${i}"}`))
 
+                    if (selects.length == 1) {
+                      interaction.update({
+                        embeds: [data[interaction.values[0]].resources[0].embed],
+                        components: [categoryRow2],
+                        ephemeral: true
+                      })
+                    } else {
+                      var categoryRow = new MessageActionRow()
+                        .addComponents(
+                            new MessageSelectMenu()
+                            .setCustomId('resources')
+                            .setPlaceholder('Nothing selected')
+                            .addOptions(selects),
+                        );
+                        const categoryEmbed = new MessageEmbed()
+                            .setColor(0x5865F2)
+                            .setTitle(data[interaction.values[0]].name)
+                        if (data[interaction.values[0]].category.url) {
+                            categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. To view the docs for this category click [here](${data[interaction.values[0]].category.url}). To view help on a specific issue you may have, use the select menu below.`)
+                        } else {
+                            categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. There is no specific page on the docs for this category but you should still check out the general docs [here](https://docs.carl.gg). To view help on a specific issue you may have, use the select menu below.`)
+                        }
+                        interaction.update({
+                            embeds: [categoryEmbed],
+                            components: [categoryRow, categoryRow2],
+                            ephemeral: true
+                        })
+                    }
+                }
                 if (interaction.customId == 'resources') {
                     const indexes = interaction.values[0].split('-')
                     interaction.update({
@@ -83,11 +88,10 @@ module.exports = {
             if (interaction.componentType == 'BUTTON') {
                 if (interaction.customId == 'start') {
                     const selects = data.map((u, i) => JSON.parse(`{"label":"${u.name.replaceAll(`*`,``)}", "value":"${i}"}`))
-                    
-                        startEmbed.setTitle('Carl-Bot Help Desk')
-                        startEmbed.setColor(0x5865F2)
-                        startEmbed.setDescription('Select a category below to get help about it')
-                     resourceRow = new MessageActionRow()
+                    startEmbed.setTitle('Carl-Bot Help Desk')
+                    startEmbed.setColor(0x5865F2)
+                    startEmbed.setDescription('Select a category below to get help about it')
+                    resourceRow = new MessageActionRow()
                         .addComponents(
                             new MessageSelectMenu()
                             .setCustomId('category')
@@ -101,8 +105,7 @@ module.exports = {
                     })
                 } else {
                     // go back
-                      
-                      interaction.update({
+                    interaction.update({
                         embeds: [startEmbed],
                         components: [resourceRow],
                         ephemeral: true

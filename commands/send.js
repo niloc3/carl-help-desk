@@ -10,11 +10,11 @@ module.exports = {
         .setDescription('Sends starting embed.'),
     async execute(message, client) {
 
-message.reply('Help Desk Sent Below')
+message.reply({ content: 'Help Desk Sent Below', ephemeral: true})
 const embed = new MessageEmbed()
   .setTitle('Carl-Bot Help Desk')
   .setColor(0x5865F2)
-  .setDescription('Click the button below to start an interactive help desk. From there you will be able to select a category and then find specifici specific resources about it.')
+  .setDescription('Click the button below to start an interactive help desk. From there you will be able to select a category and then find specific resources about it.')
 
 		const row = new MessageActionRow()
 			.addComponents(
@@ -24,7 +24,7 @@ const embed = new MessageEmbed()
           .setStyle('PRIMARY')
 			);
 
-  message.channel.send({embeds: [embed], components: [row]})
+  message.channel.send({ embeds: [embed], components: [row]})
 
     },
 };

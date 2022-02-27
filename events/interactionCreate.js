@@ -47,28 +47,33 @@ module.exports = {
                             .setLabel('Back')
                         );
                     const selects = data[interaction.values[0]].resources.map((u, i) => JSON.parse(`{"label":"${u.name}", "value":"${interaction.values[0]}-${i}"}`))
+                        .sort((a, b) => {
+                            var textA = a.label.toUpperCase();
+                            var textB = b.label.toUpperCase();
+                            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                        })
 
                     if (selects.length == 1) {
-                      interaction.update({
-                        embeds: [data[interaction.values[0]].resources[0].embed],
-                        components: [categoryRow2],
-                        ephemeral: true
-                      })
+                        interaction.update({
+                            embeds: [data[interaction.values[0]].resources[0].embed],
+                            components: [categoryRow2],
+                            ephemeral: true
+                        })
                     } else {
-                      var categoryRow = new MessageActionRow()
-                        .addComponents(
-                            new MessageSelectMenu()
-                            .setCustomId('resources')
-                            .setPlaceholder('Nothing selected')
-                            .addOptions(selects),
-                        );
+                        var categoryRow = new MessageActionRow()
+                            .addComponents(
+                                new MessageSelectMenu()
+                                .setCustomId('resources')
+                                .setPlaceholder('Nothing selected')
+                                .addOptions(selects),
+                            );
                         const categoryEmbed = new MessageEmbed()
                             .setColor(0x5865F2)
                             .setTitle(data[interaction.values[0]].name)
                         if (data[interaction.values[0]].category.url) {
-                            categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. To view the docs for this category click [here](${data[interaction.values[0]].category.url}). To view help on a specific issue you may have, use the select menu below.`)
+                            categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. To view the documentation for this category click [here](${data[interaction.values[0]].category.url}). To view help on a specific issue you may have, use the select menu below.`)
                         } else {
-                            categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. There is no specific page on the docs for this category but you should still check out the general docs [here](https://docs.carl.gg). To view help on a specific issue you may have, use the select menu below.`)
+                            categoryEmbed.setDescription(`You have selected the **${data[interaction.values[0]].name}** category. There is no specific page on the documentation for this category but you should still check out the general documentation [here](https://docs.carl.gg). To view help on a specific issue you may have, use the select menu below.`)
                         }
                         interaction.update({
                             embeds: [categoryEmbed],
@@ -87,7 +92,11 @@ module.exports = {
             }
             if (interaction.componentType == 'BUTTON') {
                 if (interaction.customId == 'start') {
-                    const selects = data.map((u, i) => JSON.parse(`{"label":"${u.name.replaceAll(`*`,``)}", "value":"${i}"}`))
+                    const selects = data.map((u, i) => JSON.parse(`{"label":"${u.name.replaceAll(`*`,``)}", "value":"${i}"}`)).sort((a, b) => {
+                        var textA = a.label.toUpperCase();
+                        var textB = b.label.toUpperCase();
+                        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+                    })
                     startEmbed.setTitle('Carl-Bot Help Desk')
                     startEmbed.setColor(0x5865F2)
                     startEmbed.setDescription('Select a category below to get help about it')

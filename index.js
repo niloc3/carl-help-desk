@@ -29,9 +29,10 @@ const client = new Client({
   ]
 });
 
-client.login(process.env.TOKEN)
+client.commands = new Discord.Collection();
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
@@ -42,7 +43,14 @@ for (const file of eventFiles) {
 	}
 }
 
+for (const file of commandFiles) {
+  const command = require(`./commands/${file}`);
+  client.commands.set(command.name, command);
+}
+
 process.on('unhantdledRejection', error => {
 	console.log('Unhandled promise rejection:');
   console.error(error)
 });
+
+client.login(process.env.TOKEN)

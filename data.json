@@ -26,7 +26,7 @@
       },
       "resources":[
          {
-            "name":"How to make reaction roles (step-by-step image and video)",
+            "name":"How to make reaction roles step-by-step.",
             "embed":{
                "image":{
                   "url":"https://i.imgur.com/W2KAAPa.png",
@@ -42,7 +42,7 @@
             }
          },
          {
-            "name":"How to setup verification with reaction roles (step by step video)",
+            "name":"How to setup verification with reaction roles",
             "embed":{
                "url":"https://docs.carl.gg/roles/reaction-roles/",
                "title":"How to setup verification?",
@@ -51,10 +51,10 @@
             }
          },
          {
-            "name":"How to add multiple role/emoji pairs to an existing message",
+            "name":"Add multiple roles pairs to an existing message",
             "embed":{
                "color":4299263,
-               "title":"How to add multiple role/emoji pairs to an existing message",
+               "title":"Add multiple role/emoji pairs to an existing message",
                "description":"`!rr addmany` requires you to separate each emoji-role pair with a newline (Shift + Enter), like so ```!rr addmany #reactroles 1238901239812 👼 pure\n💩 fortnite\n😁 league of legends```\nVideo tutorial: https://www.youtube.com/watch?v=58CQzpV01ks"
             }
          },
@@ -79,7 +79,7 @@
             }
          },
          {
-            "name":"Swap Setup - Add and remove role(s) on the same reaction role",
+            "name":"Swap Setup: Swap two roles on a reaction role.",
             "embed":{
                "color":4299263,
                "title":"Swap Setup - Add and remove role(s) on the same reaction role",
@@ -280,7 +280,7 @@
       },
       "resources":[
          {
-            "name":"How to make an embed (step-by-step image and video)",
+            "name":"How to make an embed step-by-step",
             "embed":{
                "description":"Using the Embed Builder on the [Dashboard](https://carl.gg/)\nI = Icon url⠀⠀⠀⠀⠀⠀⠀⠀ ⠀ T = Thumbnail url\nImage = Image url⠀⠀⠀⠀⠀F = Footer icon\n*Image urls **MUST** be direct image links*\n[Video Tutorial](https://www.youtube.com/watch?v=jUa6YbRC0xU)",
                "image":{
@@ -393,7 +393,7 @@
       ]
    },
    {
-      "name":"Levels **(Premium only)**",
+      "name":"Levels (Premium only)",
       "keywords":[
          "level",
          "levels"
@@ -432,7 +432,7 @@
       },
       "resources":[
          {
-            "name":"How to easily setup the logging system in a single command",
+            "name":"How to easily setup the logging system.",
             "embed":{
                "title":"really really simple",
                "description":"Make sure Carl-Bot's role has the \"Manage Webhook\" permission, then do:\n<@!235148962103951360> log AIO\n<@!235148962103951360> modlog create <name> ",
@@ -464,7 +464,7 @@
       },
       "resources":[
          {
-            "name":"How to Setup Channel Permissions for Mute and Lockdown",
+            "name":"How to Setup Permissions for Mute and Lockdown",
             "embed":{
                "fields":[
                   {
@@ -488,7 +488,7 @@
                      "inline":false
                   }
                ],
-               "title":"How to Setup Channel Permissions for Mute and Lockdown:",
+               "title":"How to Setup Permissions for Mute and Lockdown:",
                "color":6395367
             }
          },
@@ -695,7 +695,7 @@
       },
       "resources":[
          {
-            "name":"How to \"say things\" with Carl-bot (echo, embed, cembed)",
+            "name":"How to say things with Carl-bot (echo, embed, cembed)",
             "embed":{
                "fields":[
                   {
@@ -768,7 +768,7 @@
       ]
    },
    {
-      "name":"Voice Link **(Premium only)**",
+      "name":"Voice Link (Premium only)",
       "keywords":[
          "voice link",
          "voicelink",
@@ -1066,7 +1066,7 @@
             }
          },
          {
-            "name":"Drama Feature (defer) **(Premium only)**",
+            "name":"Drama Feature (defer) (Premium only)",
             "embed":{
                "image":{
                   "url":"https://i.imgur.com/hQjbM4G.png",

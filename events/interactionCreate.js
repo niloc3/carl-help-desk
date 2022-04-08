@@ -163,7 +163,7 @@ module.exports = {
                         .addComponents(
                             new TextInputComponent()
                             .setCustomId('justify')
-                            .setLabel('Justify Your Response')
+                            .setLabel('Your Feedback')
                             .setStyle('LONG')
                             .setRequired(true)
 
@@ -179,7 +179,7 @@ module.exports = {
                         .addComponents(
                             new TextInputComponent()
                             .setCustomId('justify')
-                            .setLabel('Justify Your Response')
+                            .setLabel('Your Feedback')
                             .setStyle('LONG')
                             .setRequired(true)
 
@@ -259,12 +259,13 @@ module.exports = {
                             name: 'Was their question answered',
                             value: 'No'
                         }, {
-                            name: 'Justify Your Response',
+                            name: 'Your Feedback',
                             value: 'None'
                         }, )
                     client.channels.cache.get('961848341271019550').send({
                         embeds: [submitNoEmbed]
                     });
+                  interaction.update({ content: 'Thank you! Your response has been recorded.', components: [], ephemeral: true })
 
                 } else if (interaction.customId == 'submitYes') {
                     const submitYesEmbed = new MessageEmbed()
@@ -279,12 +280,13 @@ module.exports = {
                             name: 'Was their question answered',
                             value: 'Yes'
                         }, {
-                            name: 'Justify Your Response',
+                            name: 'Your Feedback',
                             value: 'None'
                         } )
                     client.channels.cache.get('961848341271019550').send({
                         embeds: [submitYesEmbed]
                     });
+                  interaction.update({ content: 'Thank you! Your response has been recorded.', components: [], ephemeral: true })
                 }
                 }
             },

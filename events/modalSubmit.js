@@ -9,7 +9,7 @@ module.exports = {
 	    	{ name: 'Username', value: modal.user.username + "#" + modal.user.discriminator },
 	    	{ name: 'User ID', value: modal.user.id },
         { name: 'Was their question answered', value: modal.customId },
-	    	{ name: 'Justify Your Response', value: modal.fields[0].value },
+	    	{ name: 'Your Feedback', value: modal.fields[0].value },
 	    )
     client.channels.cache.get('961848341271019550').send({embeds: [embed]});
     modal.update({ content: 'Thank you! Your response has been recorded.', components: [], ephemeral: true })

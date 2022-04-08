@@ -1,18 +1,24 @@
-const { MessageEmbed } = require('discord.js')
+const {MessageEmbed} = require('discord.js');
+const {sendfile} = require('express/lib/response');
+const {sendFeedbackEmbed} = require('../helpers');
+
 module.exports = {
-  name: 'modalSubmit',
-  execute(modal, client) {
+	name: 'modalSubmit',
+	async execute(modal, client) {
+		let id = modal.customId;
+		let msgid = id.split('-')[1];
+		let wasAnswerwed = id.split('-')[0] == 'Yes';
 
-    const embed = new MessageEmbed()
-      .setTitle('New Feedback Response')
-	    .addFields(
-	    	{ name: 'Username', value: modal.user.username + "#" + modal.user.discriminator },
-	    	{ name: 'User ID', value: modal.user.id },
-        { name: 'Was their question answered', value: modal.customId },
-	    	{ name: 'Your Feedback', value: modal.fields[0].value },
-	    )
-    client.channels.cache.get('961848341271019550').send({embeds: [embed]});
-    modal.update({ content: 'Thank you! Your response has been recorded.', components: [], ephemeral: true })
-
-  },
+		await sendFeedbackEmbed(
+			modal,
+			wasAnswerwed,
+			modal.fields[0].value,
+			msgid,
+		);
+		modal.update({
+			content: 'Thank you! Your response has been recorded.',
+			components: [],
+			ephemeral: true,
+		});
+	},
 };

@@ -1,5 +1,5 @@
 const {Interaction, MessageEmbed} = require('discord.js');
-
+var fs = require('fs');
 /**
  * Send a feedback embed
  * @param {Interaction} interaction The interaction that triggered this
@@ -15,27 +15,25 @@ async function sendFeedbackEmbed(
 	feedback = null,
 	editID = null,
 ) {
-	let embed = new MessageEmbed().setTitle('New Feedback Response').addFields(
+  var data = fs.readFileSync('feedback_num.txt', 'utf-8');
+	let embed = new MessageEmbed()
+    .setTitle(`Feedback #${data}`)
+    .addFields(
 		{
-			name: 'Username',
-			value:
-				interaction.user.username +
-				'#' +
-				interaction.user.discriminator,
-		},
-		{
-			name: 'User ID',
-			value: interaction.user.id,
-		},
-		{
-			name: 'Was their question answered',
+			name: 'Was their question answered?',
 			value: wasAnswerwed ? 'Yes' : 'No',
 		},
 		{
-			name: 'Your Feedback',
+			name: 'Additional comment',
 			value: feedback || 'None',
 		},
-	);
+	)
+    .setFooter({ 
+      text: interaction.user.username + '#' + interaction.user.discriminator + ' ─ ' + interaction.user.id,
+      iconURL: interaction.user.displayAvatarURL()
+        })
+    .setColor(wasAnswerwed ? '0x3fd141' : '0xb81c11')
+
 
 	let channel = interaction.client.channels.cache.get('961848341271019550');
 	let message;
@@ -49,6 +47,10 @@ async function sendFeedbackEmbed(
 		});
 	}
 
+  if (!feedback) {
+    fs.writeFileSync('feedback_num.txt', JSON.stringify(parseInt(data) + 1), 'utf-8');
+  }
+  
 	return message.id;
 }
 

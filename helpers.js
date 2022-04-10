@@ -1,4 +1,6 @@
 const {Interaction, MessageEmbed} = require('discord.js');
+var Mixpanel = require('mixpanel');
+var mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN)
 var fs = require('fs');
 /**
  * Send a feedback embed
@@ -15,6 +17,7 @@ async function sendFeedbackEmbed(
 	feedback = null,
 	editID = null,
 ) {
+  if (feedback) feedback = feedback.replace(/`/g, '\\`')
   var data = fs.readFileSync('feedback_num.txt', 'utf-8');
 	let embed = new MessageEmbed()
     .setTitle(`Feedback #${data}`)
@@ -32,9 +35,34 @@ async function sendFeedbackEmbed(
       text: interaction.user.username + '#' + interaction.user.discriminator + ' ─ ' + interaction.user.id,
       iconURL: interaction.user.displayAvatarURL()
         })
-    .setColor(wasAnswerwed ? '0x3fd141' : '0xb81c11')
+    .setColor(wasAnswerwed ? '0x57F287' : '0xED4245')
 
+    if (!feedback) {
+    fs.writeFileSync('feedback_num.txt', JSON.stringify(parseInt(data) + 1), 'utf-8');
+  } else {
+    const blacklistedWords = ['darn', 'shucks']
+    var containedWords = []
+    for (var i = 0; i < blacklistedWords.length; i++) {
+      console.log(feedback.includes(blacklistedWords[i]))
+      if (feedback.includes(blacklistedWords[i])) containedWords.push(blacklistedWords[i])
+    }
+    const containsLink = feedback.match(/((https:|http:|www\.)\S*)/gm)
 
+    var issues = []
+      
+    if (containsLink) issues.push('`link(s)`')
+    if (containedWords) issues.push(`\`blacklisted word(s)\``)
+    var sanitizedFeedback = embed.fields[1].value
+    sanitizedFeedback = sanitizedFeedback.replace(/((https:|http:|www\.)\S*)/gm, '`$1`')
+    sanitizedFeedback = sanitizedFeedback.replace(/(darn|shucks)/gm, '`$1`')
+
+    if (issues.length > 0) {
+      embed.fields[1].value = `||${sanitizedFeedback}||`
+      embed.setDescription(`:warning: Contains ${issues.join(' and ')}. Feedback has been censored`)
+    }
+  }
+
+  
 	let channel = interaction.client.channels.cache.get('961848341271019550');
 	let message;
 
@@ -46,10 +74,6 @@ async function sendFeedbackEmbed(
 			embeds: [embed],
 		});
 	}
-
-  if (!feedback) {
-    fs.writeFileSync('feedback_num.txt', JSON.stringify(parseInt(data) + 1), 'utf-8');
-  }
   
 	return message.id;
 }

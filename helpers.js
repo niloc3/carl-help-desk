@@ -72,10 +72,11 @@ async function sendFeedbackEmbed(
 ) {
 	if (feedback) feedback = feedback.replace(/`/g, '\\`');
 
-	var data = '1';
+	var data;
 	try {
 		data = fs.readFileSync('feedback_num.txt', 'utf-8');
 	} catch (e) {}
+  if (!data) data = '1';
 
 	let session = sessions.getSessionPages(interaction.user.id);
 
@@ -118,16 +119,14 @@ async function sendFeedbackEmbed(
 		);
 	} else {
 		const blacklistedWords = ['darn', 'shucks'];
-		var containedWords = [];
+		var containedWords = false;
 		for (var i = 0; i < blacklistedWords.length; i++) {
-			console.log(feedback.includes(blacklistedWords[i]));
-			if (feedback.includes(blacklistedWords[i]))
-				containedWords.push(blacklistedWords[i]);
+			if (feedback.includes(blacklistedWords[i])) containedWords = true;
 		}
+
 		const containsLink = feedback.match(/((https:|http:|www\.)\S*)/gm);
 
 		var issues = [];
-
 		if (containsLink) issues.push('`link(s)`');
 		if (containedWords) issues.push(`\`blacklisted word(s)\``);
 		var sanitizedFeedback = embed.fields[2].value;

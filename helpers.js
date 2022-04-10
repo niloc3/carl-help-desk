@@ -72,16 +72,31 @@ async function sendFeedbackEmbed(
 ) {
 	if (feedback) feedback = feedback.replace(/`/g, '\\`');
 
+	let channel = interaction.client.channels.cache.get('961848341271019550');
+	let message;
+
+	if (editID) message = await channel.messages.fetch(editID);
+
 	var data;
 	try {
 		data = fs.readFileSync('feedback_num.txt', 'utf-8');
 	} catch (e) {}
-  if (!data) data = '1';
+
+	if (!data) data = 1;
+	else data = parseInt(data);
+
+	let title;
+	if (message) {
+		title = message.embeds[0].title;
+	} else {
+		title = `Feedback #${data}`;
+		fs.writeFileSync('feedback_num.txt', (data + 1).toString(), 'utf-8');
+	}
 
 	let session = sessions.getSessionPages(interaction.user.id);
 
 	let embed = new MessageEmbed()
-		.setTitle(`Feedback #${data}`)
+		.setTitle(title)
 		.addFields(
 			{
 				name: 'Was their question answered?',
@@ -111,13 +126,7 @@ async function sendFeedbackEmbed(
 		})
 		.setColor(wasAnswerwed ? '0x57F287' : '0xED4245');
 
-	if (!feedback) {
-		fs.writeFileSync(
-			'feedback_num.txt',
-			JSON.stringify(parseInt(data) + 1),
-			'utf-8',
-		);
-	} else {
+	if (feedback) {
 		const blacklistedWords = ['darn', 'shucks'];
 		var containedWords = false;
 		for (var i = 0; i < blacklistedWords.length; i++) {
@@ -149,11 +158,7 @@ async function sendFeedbackEmbed(
 		}
 	}
 
-	let channel = interaction.client.channels.cache.get('961848341271019550');
-	let message;
-
-	if (editID) {
-		message = await channel.messages.fetch(editID);
+	if (message) {
 		message = await message.edit({embeds: [embed]});
 	} else {
 		message = await channel.send({

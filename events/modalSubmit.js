@@ -1,6 +1,6 @@
 const {MessageEmbed} = require('discord.js');
 const {sendfile} = require('express/lib/response');
-const {sendFeedbackEmbed} = require('../helpers');
+const {sessions, sendFeedbackEmbed} = require('../helpers');
 
 module.exports = {
 	name: 'modalSubmit',
@@ -15,6 +15,7 @@ module.exports = {
 			modal.fields[0].value,
 			msgid,
 		);
+		sessions.removeSession(modal.user.id);
 		modal.update({
 			content: 'Thank you! Your response has been recorded.',
 			components: [],

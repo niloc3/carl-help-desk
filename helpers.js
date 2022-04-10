@@ -26,7 +26,10 @@ class SessionManager {
 			clearTimeout(this.sessionTimeouts.get(userID));
 		}
 		this.sessions.get(userID).push(page);
-		setTimeout(() => this.removeSession(userID), 1000 * 60 * 10);
+		this.sessionTimeouts.set(
+			userID,
+			setTimeout(() => this.removeSession(userID), 1000 * 60 * 10),
+		);
 	}
 
 	/**

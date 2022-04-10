@@ -7,7 +7,7 @@ const {
 module.exports = {
     name: 'start',
     execute(message, args) {
-        if (message.author.id !== '626916199783071750') return;
+        if (!message.member.roles.cache.has(process.env.MODROLE)) return;
         const embed = new MessageEmbed()
             .setTitle('Carl-Bot Help Desk')
             .setColor(0x5865F2)

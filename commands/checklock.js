@@ -3,7 +3,7 @@ const { Permissions, MessageEmbed } = require('discord.js');
 module.exports = {
 	name: 'checklock',
 	execute(message, args) {
-    if (message.author.id !== '626916199783071750') return;
+    if (!message.member.roles.cache.has(process.env.MODROLE)) return;
 		const isLocked = !message.guild.roles.everyone.permissions.has(Permissions.FLAGS.SEND_MESSAGES)
 
     const lockEmbed = new MessageEmbed()

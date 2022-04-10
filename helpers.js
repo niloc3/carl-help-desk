@@ -72,7 +72,7 @@ async function sendFeedbackEmbed(
 ) {
 	if (feedback) feedback = feedback.replace(/`/g, '\\`');
 
-	let channel = interaction.client.channels.cache.get('961848341271019550');
+	let channel = interaction.client.channels.cache.get(process.env.FEEDBACK_CHANNEL);
 	let message;
 
 	if (editID) message = await channel.messages.fetch(editID);

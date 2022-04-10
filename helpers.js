@@ -10,6 +10,11 @@ class SessionManager {
 	sessions = new Map();
 
 	/**
+	 * @type Map<string, Timeout>
+	 */
+	sessionTimeouts = new Map();
+
+	/**
 	 * Add page to user session
 	 * @param {string} userID Discord ID
 	 * @param {string[]} page Array of category name and page name
@@ -17,9 +22,11 @@ class SessionManager {
 	addSessionPage(userID, page) {
 		if (!this.sessions.has(userID)) {
 			this.sessions.set(userID, []);
-			setTimeout(() => this.removeSession(userID), 1000 * 60 * 10);
+		} else {
+			clearTimeout(this.sessionTimeouts.get(userID));
 		}
 		this.sessions.get(userID).push(page);
+		setTimeout(() => this.removeSession(userID), 1000 * 60 * 10);
 	}
 
 	/**
@@ -37,6 +44,8 @@ class SessionManager {
 	 * @param {string} userID Discord ID
 	 */
 	removeSession(userID) {
+		clearTimeout(this.sessionTimeouts.delete(userID));
+		this.sessionTimeouts.delete(userID);
 		this.sessions.delete(userID);
 	}
 }

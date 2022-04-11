@@ -1,23 +1,29 @@
 const {
-	Collection,
-	Permissions,
 	MessageEmbed,
 	MessageActionRow,
 	MessageButton,
 	MessageSelectMenu,
 } = require('discord.js');
-const {Modal, TextInputComponent, showModal} = require('discord-modals');
-const {sendFeedbackEmbed, sessions} = require('../helpers');
+const {
+  Modal,
+  TextInputComponent,
+  showModal
+} = require('discord-modals');
+const {
+  sendFeedbackEmbed,
+  sessions
+} = require('../helpers');
+
 
 const startEmbed = new MessageEmbed();
-var resourceRow;
+let resourceRow;
 const fs = require('fs');
 let data = JSON.parse(fs.readFileSync('./data.json'));
 
 module.exports = {
 	name: 'interactionCreate',
 	async execute(interaction, client, Discord, mixpanel) {
-		var categoryRow2 = new MessageActionRow().addComponents(
+		let categoryRow2 = new MessageActionRow().addComponents(
 			new MessageButton()
 				.setCustomId('home')
 				.setStyle('SECONDARY')
@@ -25,7 +31,7 @@ module.exports = {
 				.setEmoji('🏠'),
 		);
 
-		var categoryRow4 = new MessageActionRow().addComponents(
+		let categoryRow4 = new MessageActionRow().addComponents(
 			new MessageButton()
 				.setCustomId('home')
 				.setStyle('SECONDARY')
@@ -37,7 +43,7 @@ module.exports = {
 				.setLabel('Give Feedback'),
 		);
 
-		var categoryRow3 = new MessageActionRow().addComponents(
+		let categoryRow3 = new MessageActionRow().addComponents(
 			new MessageButton()
 				.setCustomId('back')
 				.setStyle('PRIMARY')
@@ -66,8 +72,8 @@ module.exports = {
 						),
 					)
 					.sort((a, b) => {
-						var textA = a.label.toUpperCase();
-						var textB = b.label.toUpperCase();
+						let textA = a.label.toUpperCase();
+						let textB = b.label.toUpperCase();
 						return textA < textB ? -1 : textA > textB ? 1 : 0;
 					});
 
@@ -89,7 +95,7 @@ module.exports = {
 						data[interaction.values[0]].resources[0].name,
 					]);
 				} else {
-					var categoryRow = new MessageActionRow().addComponents(
+					let categoryRow = new MessageActionRow().addComponents(
 						new MessageSelectMenu()
 							.setCustomId('resources')
 							.setPlaceholder('Select a resource')
@@ -118,7 +124,7 @@ module.exports = {
 			}
 			if (interaction.customId == 'resources') {
 				const indexes = interaction.values[0].split('-');
-				var newSelectMenu = new MessageActionRow().addComponents(
+				let newSelectMenu = new MessageActionRow().addComponents(
 					new MessageSelectMenu()
 						.setCustomId(
 							interaction.message.components[0].components[0]
@@ -162,14 +168,14 @@ module.exports = {
 						),
 					)
 					.sort((a, b) => {
-						var textA = a.label.toUpperCase();
-						var textB = b.label.toUpperCase();
+						let textA = a.label.toUpperCase();
+						let textB = b.label.toUpperCase();
 						return textA < textB ? -1 : textA > textB ? 1 : 0;
 					});
 				startEmbed.setTitle('Carl-Bot Help Desk');
 				startEmbed.setColor(0x5865f2);
 				startEmbed.setDescription(
-					'Select a category from the dropdown menu below to get help.\n\nCan’t find what you’re looking for? Ask a human in another support channel.\n\nSee <#805888259934257203>',
+					'Select a category from the dropdown menu below to get help.\n\nCan’t find what you’re looking for? Ask a human in another support channel.\\nnSee <#805888259934257203>',
 				);
 				resourceRow = new MessageActionRow().addComponents(
 					new MessageSelectMenu()
@@ -197,8 +203,8 @@ module.exports = {
 				});
 				const placeholder =
 					interaction.message.components[0].components[0].placeholder;
-				var category;
-				for (var i = 0; i < data.length; i++) {
+				let category;
+				for (let i = 0; i < data.length; i++) {
 					if (
 						data[i].resources.filter(a => a.name == placeholder)
 							.length > 0
@@ -206,7 +212,7 @@ module.exports = {
 						category = data[i];
 					}
 				}
-				var newSelectMenu = new MessageActionRow().addComponents(
+				let newSelectMenu = new MessageActionRow().addComponents(
 					new MessageSelectMenu()
 						.setCustomId(
 							interaction.message.components[0].components[0]
@@ -271,6 +277,12 @@ module.exports = {
 					interaction: interaction,
 				});
 			} else if (interaction.customId == 'feedback') {
+        let rawBlacklistedUsers = fs.readFileSync('./blacklisted_users.txt')
+        let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
+        if (blacklistedUsers.includes(interaction.user.id)) return interaction.reply({
+          content: 'You have been blacklisted from using this feature.',
+          ephemeral: true
+        })
 				mixpanel.track('Clicked Feedback Button', {
 					distinct_id: interaction.user.id,
 				});
@@ -360,7 +372,31 @@ module.exports = {
 					ephemeral: true,
 				});
 				sessions.removeSession(interaction.user.id);
-			}
+			} else if (interaction.customId.startsWith('blacklist-')) {
+        let userid = interaction.customId.split('-')[1];
+        let rawBlacklistedUsers = fs.readFileSync('./blacklisted_users.txt')
+        let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
+
+        const blacklistButtonDisabled = new MessageActionRow()
+          .addComponents(
+            new MessageButton()
+              .setCustomId(`blacklist-disabled`)
+              .setLabel('Blacklist User')
+              .setDisabled(true)
+              .setStyle('DANGER'),
+          );
+        client.users.fetch(userid).then(async user => {
+          await interaction.update({
+            components: [blacklistButtonDisabled]
+          })
+          await interaction.followUp(`**${user.username}** has been blacklisted from sending feedback.`)
+          blacklistedUsers.push(userid)
+          fs.writeFileSync('./blacklisted_users.txt', JSON.stringify(blacklistedUsers));
+
+          
+          
+        })
+      }
 		}
 	},
 };

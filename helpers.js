@@ -1,4 +1,4 @@
-const {Interaction, MessageEmbed} = require('discord.js');
+const {Interaction, MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
 var Mixpanel = require('mixpanel');
 var mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 var fs = require('fs');
@@ -95,6 +95,14 @@ async function sendFeedbackEmbed(
 
 	let session = sessions.getSessionPages(interaction.user.id);
 
+  const blacklistButtonRow = new MessageActionRow()
+    .addComponents(
+      new MessageButton()
+        .setCustomId(`blacklist-${interaction.user.id}`)
+        .setLabel('Blacklist User')
+        .setStyle('DANGER'),
+    );
+
 	let embed = new MessageEmbed()
 		.setTitle(title)
 		.addFields(
@@ -124,7 +132,7 @@ async function sendFeedbackEmbed(
 				interaction.user.id,
 			iconURL: interaction.user.displayAvatarURL(),
 		})
-		.setColor(wasAnswerwed ? '0x57F287' : '0xED4245');
+		.setColor(wasAnswerwed ? '0x3ba45c' : '0xeb4346');
 
 	if (feedback) {
 		const blacklistedWords = ['darn', 'shucks'];
@@ -159,10 +167,14 @@ async function sendFeedbackEmbed(
 	}
 
 	if (message) {
-		message = await message.edit({embeds: [embed]});
+		message = await message.edit({
+      embeds: [embed],
+      components: [blacklistButtonRow]
+    });
 	} else {
 		message = await channel.send({
 			embeds: [embed],
+      components: [blacklistButtonRow]
 		});
 	}
 

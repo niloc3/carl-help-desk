@@ -4,7 +4,7 @@ const {sessions, sendFeedbackEmbed} = require('../helpers');
 
 module.exports = {
 	name: 'modalSubmit',
-	async execute(modal, client) {
+	async execute(modal, client, Discord, mixpanel) {
 		let id = modal.customId;
 		let msgid = id.split('-')[1];
 		let wasAnswerwed = id.split('-')[0] == 'Yes';
@@ -21,5 +21,8 @@ module.exports = {
 			components: [],
 			ephemeral: true,
 		});
+    mixpanel.track('Feedback Modal Submitted', {
+      distict_id: modal.user.id
+    })
 	},
 };

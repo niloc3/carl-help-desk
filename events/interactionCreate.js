@@ -169,7 +169,7 @@ module.exports = {
 				startEmbed.setTitle('Carl-Bot Help Desk');
 				startEmbed.setColor(0x5865f2);
 				startEmbed.setDescription(
-					'Select a category from the dropdown menu below to get help.\n\nCan’t find what you’re looking for? Ask a human in another support channel.\\nnSee <#805888259934257203>',
+					'Select a category from the dropdown menu below to get help.\n\nCan’t find what you’re looking for? Ask a human in another support channel.\n\nSee <#805888259934257203>',
 				);
 				resourceRow = new MessageActionRow().addComponents(
 					new MessageSelectMenu()

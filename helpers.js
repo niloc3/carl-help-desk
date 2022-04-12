@@ -1,7 +1,7 @@
 const {Interaction, MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
-var Mixpanel = require('mixpanel');
-var mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
-var fs = require('fs');
+let Mixpanel = require('mixpanel');
+let mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
+let fs = require('fs');
 
 class SessionManager {
 	/**
@@ -77,7 +77,7 @@ async function sendFeedbackEmbed(
 
 	if (editID) message = await channel.messages.fetch(editID);
 
-	var data;
+	let data;
 	try {
 		data = fs.readFileSync('feedback_num.txt', 'utf-8');
 	} catch (e) {}
@@ -136,17 +136,17 @@ async function sendFeedbackEmbed(
 
 	if (feedback) {
 		const blacklistedWords = ['darn', 'shucks'];
-		var containedWords = false;
-		for (var i = 0; i < blacklistedWords.length; i++) {
+		let containedWords = false;
+		for (let i = 0; i < blacklistedWords.length; i++) {
 			if (feedback.includes(blacklistedWords[i])) containedWords = true;
 		}
 
 		const containsLink = feedback.match(/((https:|http:|www\.)\S*)/gm);
 
-		var issues = [];
+		let issues = [];
 		if (containsLink) issues.push('`link(s)`');
 		if (containedWords) issues.push(`\`blacklisted word(s)\``);
-		var sanitizedFeedback = embed.fields[2].value;
+		let sanitizedFeedback = embed.fields[2].value;
 		sanitizedFeedback = sanitizedFeedback.replace(
 			/((https:|http:|www\.)\S*)/gm,
 			'`$1`',

@@ -135,7 +135,7 @@ async function sendFeedbackEmbed(
 		.setColor(wasAnswerwed ? '0x3ba45c' : '0xeb4346');
 
 	if (feedback) {
-		const blacklistedWords = ['darn', 'shucks'];
+		const blacklistedWords = ['faggot', 'nigg', '██', 'copy and paste'];
 		let containedWords = false;
 		for (let i = 0; i < blacklistedWords.length; i++) {
 			if (feedback.includes(blacklistedWords[i])) containedWords = true;
@@ -152,7 +152,7 @@ async function sendFeedbackEmbed(
 			'`$1`',
 		);
 		sanitizedFeedback = sanitizedFeedback.replace(
-			/(darn|shucks)/gm,
+			/(faggot|nigg|██|copy and paste)/gm,
 			'`$1`',
 		);
 

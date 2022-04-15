@@ -1,4 +1,9 @@
-const {Interaction, MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
+const {
+	Interaction,
+	MessageEmbed,
+	MessageActionRow,
+	MessageButton,
+} = require('discord.js');
 let Mixpanel = require('mixpanel');
 let mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 let fs = require('fs');
@@ -72,7 +77,9 @@ async function sendFeedbackEmbed(
 ) {
 	if (feedback) feedback = feedback.replace(/`/g, '\\`');
 
-	let channel = interaction.client.channels.cache.get(process.env.FEEDBACK_CHANNEL);
+	let channel = interaction.client.channels.cache.get(
+		process.env.FEEDBACK_CHANNEL,
+	);
 	let message;
 
 	if (editID) message = await channel.messages.fetch(editID);
@@ -85,42 +92,40 @@ async function sendFeedbackEmbed(
 	if (!data) data = 1;
 	else data = parseInt(data);
 
+	let session = sessions.getSessionPages(interaction.user.id);
+
 	let title;
+	let answersViewed;
 	if (message) {
 		title = message.embeds[0].title;
+		answersViewed = message.embeds[0].fields[0].value;
 	} else {
 		title = `Feedback #${data}`;
 		fs.writeFileSync('feedback_num.txt', (data + 1).toString(), 'utf-8');
+
+		if (session)
+			answersViewed = session
+				.map((x, i) => `${i + 1}. ${x.join(' > ')}`)
+				.join('\n');
 	}
 
-	let session = sessions.getSessionPages(interaction.user.id);
-
-  const blacklistButtonRow = new MessageActionRow()
-    .addComponents(
-      new MessageButton()
-        .setCustomId(`blacklist-${interaction.user.id}`)
-        .setLabel('Blacklist User')
-        .setStyle('DANGER'),
-    );
+	const blacklistButtonRow = new MessageActionRow().addComponents(
+		new MessageButton()
+			.setCustomId(`blacklist-${interaction.user.id}`)
+			.setLabel('Blacklist User')
+			.setStyle('DANGER'),
+	);
 
 	let embed = new MessageEmbed()
 		.setTitle(title)
 		.addFields(
 			{
+				name: 'Answers viewed',
+				value: answersViewed || 'Unknown',
+			},
+			{
 				name: 'Was their question answered?',
 				value: wasAnswerwed ? 'Yes' : 'No',
-			},
-			{
-				name: 'Answers viewed',
-				value: session
-					? session
-							.map((x, i) => `${i + 1}. ${x.join(' > ')}`)
-							.join('\n')
-					: 'Unknown',
-			},
-			{
-				name: 'Additional comment',
-				value: feedback || 'None',
 			},
 		)
 		.setFooter({
@@ -146,7 +151,7 @@ async function sendFeedbackEmbed(
 		let issues = [];
 		if (containsLink) issues.push('`link(s)`');
 		if (containedWords) issues.push(`\`blacklisted word(s)\``);
-		let sanitizedFeedback = embed.fields[2].value;
+		let sanitizedFeedback = feedback;
 		sanitizedFeedback = sanitizedFeedback.replace(
 			/((https:|http:|www\.)\S*)/gm,
 			'`$1`',
@@ -157,24 +162,26 @@ async function sendFeedbackEmbed(
 		);
 
 		if (issues.length > 0) {
-			embed.fields[2].value = `||${sanitizedFeedback}||`;
+			feedback = `||${sanitizedFeedback}||`;
 			embed.setDescription(
 				`:warning: Contains ${issues.join(
 					' and ',
 				)}. Feedback has been censored`,
 			);
 		}
+
+		embed.addField('Additional comment', feedback);
 	}
 
 	if (message) {
 		message = await message.edit({
-      embeds: [embed],
-      components: [blacklistButtonRow]
-    });
+			embeds: [embed],
+			components: [blacklistButtonRow],
+		});
 	} else {
 		message = await channel.send({
 			embeds: [embed],
-      components: [blacklistButtonRow]
+			components: [blacklistButtonRow],
 		});
 	}
 

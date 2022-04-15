@@ -127,10 +127,6 @@ async function sendFeedbackEmbed(
 				name: 'Was their question answered?',
 				value: wasAnswerwed ? 'Yes' : 'No',
 			},
-			{
-				name: 'Additional comment',
-				value: feedback || 'None',
-			},
 		)
 		.setFooter({
 			text:
@@ -155,7 +151,7 @@ async function sendFeedbackEmbed(
 		let issues = [];
 		if (containsLink) issues.push('`link(s)`');
 		if (containedWords) issues.push(`\`blacklisted word(s)\``);
-		let sanitizedFeedback = embed.fields[2].value;
+		let sanitizedFeedback = feedback;
 		sanitizedFeedback = sanitizedFeedback.replace(
 			/((https:|http:|www\.)\S*)/gm,
 			'`$1`',
@@ -166,13 +162,15 @@ async function sendFeedbackEmbed(
 		);
 
 		if (issues.length > 0) {
-			embed.fields[2].value = `||${sanitizedFeedback}||`;
+			feedback = `||${sanitizedFeedback}||`;
 			embed.setDescription(
 				`:warning: Contains ${issues.join(
 					' and ',
 				)}. Feedback has been censored`,
 			);
 		}
+
+		embed.addField('Additional comment', feedback);
 	}
 
 	if (message) {

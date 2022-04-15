@@ -1,4 +1,9 @@
-const {Interaction, MessageEmbed, MessageActionRow, MessageButton} = require('discord.js');
+const {
+	Interaction,
+	MessageEmbed,
+	MessageActionRow,
+	MessageButton,
+} = require('discord.js');
 let Mixpanel = require('mixpanel');
 let mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN);
 let fs = require('fs');
@@ -72,7 +77,9 @@ async function sendFeedbackEmbed(
 ) {
 	if (feedback) feedback = feedback.replace(/`/g, '\\`');
 
-	let channel = interaction.client.channels.cache.get(process.env.FEEDBACK_CHANNEL);
+	let channel = interaction.client.channels.cache.get(
+		process.env.FEEDBACK_CHANNEL,
+	);
 	let message;
 
 	if (editID) message = await channel.messages.fetch(editID);
@@ -95,21 +102,16 @@ async function sendFeedbackEmbed(
 
 	let session = sessions.getSessionPages(interaction.user.id);
 
-  const blacklistButtonRow = new MessageActionRow()
-    .addComponents(
-      new MessageButton()
-        .setCustomId(`blacklist-${interaction.user.id}`)
-        .setLabel('Blacklist User')
-        .setStyle('DANGER'),
-    );
+	const blacklistButtonRow = new MessageActionRow().addComponents(
+		new MessageButton()
+			.setCustomId(`blacklist-${interaction.user.id}`)
+			.setLabel('Blacklist User')
+			.setStyle('DANGER'),
+	);
 
 	let embed = new MessageEmbed()
 		.setTitle(title)
 		.addFields(
-			{
-				name: 'Was their question answered?',
-				value: wasAnswerwed ? 'Yes' : 'No',
-			},
 			{
 				name: 'Answers viewed',
 				value: session
@@ -117,6 +119,10 @@ async function sendFeedbackEmbed(
 							.map((x, i) => `${i + 1}. ${x.join(' > ')}`)
 							.join('\n')
 					: 'Unknown',
+			},
+			{
+				name: 'Was their question answered?',
+				value: wasAnswerwed ? 'Yes' : 'No',
 			},
 			{
 				name: 'Additional comment',
@@ -168,13 +174,13 @@ async function sendFeedbackEmbed(
 
 	if (message) {
 		message = await message.edit({
-      embeds: [embed],
-      components: [blacklistButtonRow]
-    });
+			embeds: [embed],
+			components: [blacklistButtonRow],
+		});
 	} else {
 		message = await channel.send({
 			embeds: [embed],
-      components: [blacklistButtonRow]
+			components: [blacklistButtonRow],
 		});
 	}
 

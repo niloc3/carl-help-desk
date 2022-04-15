@@ -92,15 +92,22 @@ async function sendFeedbackEmbed(
 	if (!data) data = 1;
 	else data = parseInt(data);
 
+	let session = sessions.getSessionPages(interaction.user.id);
+
 	let title;
+	let answersViewed;
 	if (message) {
 		title = message.embeds[0].title;
+		answersViewed = message.embeds[0].fields[0].value;
 	} else {
 		title = `Feedback #${data}`;
 		fs.writeFileSync('feedback_num.txt', (data + 1).toString(), 'utf-8');
-	}
 
-	let session = sessions.getSessionPages(interaction.user.id);
+		if (session)
+			answersViewed = session
+				.map((x, i) => `${i + 1}. ${x.join(' > ')}`)
+				.join('\n');
+	}
 
 	const blacklistButtonRow = new MessageActionRow().addComponents(
 		new MessageButton()
@@ -114,11 +121,7 @@ async function sendFeedbackEmbed(
 		.addFields(
 			{
 				name: 'Answers viewed',
-				value: session
-					? session
-							.map((x, i) => `${i + 1}. ${x.join(' > ')}`)
-							.join('\n')
-					: 'Unknown',
+				value: answersViewed || 'Unknown',
 			},
 			{
 				name: 'Was their question answered?',

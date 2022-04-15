@@ -188,7 +188,7 @@ module.exports = {
 					components: [resourceRow],
 					ephemeral: true,
 				});
-			} else if (interaction.customId == 'home') {
+			} else if (interaction.customId == 'home' || interaction.customId == 'feedbackBack') {
 				mixpanel.track('Home Button Clicked', {
 					distinct_id: interaction.user.id,
 				});
@@ -295,7 +295,12 @@ module.exports = {
 						.setCustomId('feedbackNo')
 						.setStyle('DANGER')
 						.setLabel('No'),
+          new MessageButton()
+				    .setCustomId('feedbackBack')
+				    .setStyle('SECONDARY')
+				    .setLabel('Back'),
 				);
+        
         const isQuestionAnsweredEmbed = new MessageEmbed()
           .setTitle('Automated Support Feedback')
           .setDescription('Did you find what you were looking for?')

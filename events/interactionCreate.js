@@ -4,16 +4,8 @@ const {
 	MessageButton,
 	MessageSelectMenu,
 } = require('discord.js');
-const {
-  Modal,
-  TextInputComponent,
-  showModal
-} = require('discord-modals');
-const {
-  sendFeedbackEmbed,
-  sessions
-} = require('../helpers');
-
+const {Modal, TextInputComponent, showModal} = require('discord-modals');
+const {sendFeedbackEmbed, sessions} = require('../helpers');
 
 const startEmbed = new MessageEmbed();
 let resourceRow;
@@ -188,7 +180,10 @@ module.exports = {
 					components: [resourceRow],
 					ephemeral: true,
 				});
-			} else if (interaction.customId == 'home' || interaction.customId == 'feedbackBack') {
+			} else if (
+				interaction.customId == 'home' ||
+				interaction.customId == 'feedbackBack'
+			) {
 				mixpanel.track('Home Button Clicked', {
 					distinct_id: interaction.user.id,
 				});
@@ -248,10 +243,12 @@ module.exports = {
 					.addComponents(
 						new TextInputComponent()
 							.setCustomId('justify')
-							.setLabel('Is there anything else you\'d like to add.')
+							.setLabel(
+								"Is there anything else you'd like to add.",
+							)
 							.setStyle('LONG')
-              .setMinLength(30)
-              .setMaxLength(1000)
+							.setMinLength(30)
+							.setMaxLength(1000)
 							.setRequired(true),
 					);
 				showModal(modal, {
@@ -266,14 +263,16 @@ module.exports = {
 				let msgid = interaction.customId.split('-')[1];
 				const modal = new Modal()
 					.setCustomId(`No-${msgid}`)
-					.setTitle('You didn\'t find what you were looking for')
+					.setTitle("You didn't find what you were looking for")
 					.addComponents(
 						new TextInputComponent()
 							.setCustomId('justify')
-							.setLabel('Any additional comments you\’d want to add?')
+							.setLabel(
+								'Any additional comments you’d want to add?',
+							)
 							.setStyle('LONG')
-              .setMinLength(30)
-              .setMaxLength(1000)
+							.setMinLength(30)
+							.setMaxLength(1000)
 							.setRequired(true),
 					);
 				showModal(modal, {
@@ -281,12 +280,16 @@ module.exports = {
 					interaction: interaction,
 				});
 			} else if (interaction.customId == 'feedback') {
-        let rawBlacklistedUsers = fs.readFileSync('./blacklisted_users.txt')
-        let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
-        if (blacklistedUsers.includes(interaction.user.id)) return interaction.reply({
-          content: 'You have been blacklisted from using this feature.',
-          ephemeral: true
-        })
+				let rawBlacklistedUsers = fs.readFileSync(
+					'./blacklisted_users.txt',
+				);
+				let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
+				if (blacklistedUsers.includes(interaction.user.id))
+					return interaction.reply({
+						content:
+							'You have been blacklisted from using this feature.',
+						ephemeral: true,
+					});
 				mixpanel.track('Clicked Feedback Button', {
 					distinct_id: interaction.user.id,
 				});
@@ -299,16 +302,16 @@ module.exports = {
 						.setCustomId('feedbackNo')
 						.setStyle('DANGER')
 						.setLabel('No'),
-          new MessageButton()
-				    .setCustomId('feedbackBack')
-				    .setStyle('SECONDARY')
-				    .setLabel('Back'),
+					new MessageButton()
+						.setCustomId('feedbackBack')
+						.setStyle('SECONDARY')
+						.setLabel('Back'),
 				);
-        
-        const isQuestionAnsweredEmbed = new MessageEmbed()
-          .setTitle('Automated Support Feedback')
-          .setDescription('Did you find what you were looking for?')
-          .setColor(0x5865F2)
+
+				const isQuestionAnsweredEmbed = new MessageEmbed()
+					.setTitle('Automated Support Feedback')
+					.setDescription('Did you find what you were looking for?')
+					.setColor(0x5865f2);
 				interaction.update({
 					components: [feedbackButtons],
 					embeds: [isQuestionAnsweredEmbed],
@@ -330,15 +333,18 @@ module.exports = {
 						.setStyle('PRIMARY')
 						.setLabel('Submit'),
 				);
-        const questionWasAnsweredEmbed = new MessageEmbed()
-          .setTitle('Automated Support Feedback')
-          .setDescription('Glad I could help! Feel free to give additional feedback below. If not, just press submit.')
-          .setColor(0x5865F2)
+				const questionWasAnsweredEmbed = new MessageEmbed()
+					.setTitle('Automated Support Feedback')
+					.setDescription(
+						'Glad I could help! Feel free to give additional feedback below. If not, just press submit.',
+					)
+					.setColor(0x5865f2);
 				interaction.update({
 					embeds: [questionWasAnsweredEmbed],
 					components: [feedbackYesRow],
 					ephemeral: true,
 				});
+				sessions.removeSession(interaction.user.id);
 			} else if (interaction.customId == 'feedbackNo') {
 				mixpanel.track('Clicked Feedback Description Button', {
 					distinct_id: interaction.user.id,
@@ -356,73 +362,82 @@ module.exports = {
 						.setLabel('Submit'),
 				);
 
-        const questionWasNotAnsweredEmbed = new MessageEmbed()
-          .setTitle('Automated Support Feedback')
-          .setDescription('Sorry I couldn\'t help! Please ask in another support channel and a human will help you out. Feel free to give additional feedback below. If not, just press submit.')
-          .setColor(0x5865F2)
+				const questionWasNotAnsweredEmbed = new MessageEmbed()
+					.setTitle('Automated Support Feedback')
+					.setDescription(
+						"Sorry I couldn't help! Please ask in another support channel and a human will help you out. Feel free to give additional feedback below. If not, just press submit.",
+					)
+					.setColor(0x5865f2);
 				interaction.update({
 					embeds: [questionWasNotAnsweredEmbed],
 					components: [feedbackNoRow],
 					ephemeral: true,
 				});
+				sessions.removeSession(interaction.user.id);
 			} else if (interaction.customId == 'submitNo') {
 				mixpanel.track('Clicked Feedback Submit Button', {
 					distinct_id: interaction.user.id,
 					answered_question: false,
 				});
-        const feedbackSubmitNo = new MessageEmbed()
-          .setTitle('Automated Support Feedback')
-          .setDescription('Thank you! Your response has been recorded.')
-        .setColor(0x5865F2)
-        
+				const feedbackSubmitNo = new MessageEmbed()
+					.setTitle('Automated Support Feedback')
+					.setDescription(
+						'Thank you! Your response has been recorded.',
+					)
+					.setColor(0x5865f2);
+
 				interaction.update({
 					embeds: [feedbackSubmitNo],
 					components: [],
 					ephemeral: true,
 				});
-				sessions.removeSession(interaction.user.id);
 			} else if (interaction.customId == 'submitYes') {
 				mixpanel.track('Clicked Feedback Submit Button', {
 					distinct_id: interaction.user.id,
 					answered_question: true,
 				});
-        
-        const feedbackSubmitYes = new MessageEmbed()
-          .setTitle('Automated Support Feedback')
-          .setDescription('Thank you! Your response has been recorded.')
-        .setColor(0x5865F2)
-        
+
+				const feedbackSubmitYes = new MessageEmbed()
+					.setTitle('Automated Support Feedback')
+					.setDescription(
+						'Thank you! Your response has been recorded.',
+					)
+					.setColor(0x5865f2);
+
 				interaction.update({
 					embeds: [feedbackSubmitYes],
 					components: [],
 					ephemeral: true,
 				});
-				sessions.removeSession(interaction.user.id);
 			} else if (interaction.customId.startsWith('blacklist-')) {
-        let userid = interaction.customId.split('-')[1];
-        let rawBlacklistedUsers = fs.readFileSync('./blacklisted_users.txt')
-        let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
+				let userid = interaction.customId.split('-')[1];
+				let rawBlacklistedUsers = fs.readFileSync(
+					'./blacklisted_users.txt',
+				);
+				let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
 
-        const blacklistButtonDisabled = new MessageActionRow()
-          .addComponents(
-            new MessageButton()
-              .setCustomId(`blacklist-disabled`)
-              .setLabel('Blacklist User')
-              .setDisabled(true)
-              .setStyle('DANGER'),
-          );
-        client.users.fetch(userid).then(async user => {
-          await interaction.update({
-            components: [blacklistButtonDisabled]
-          })
-          await interaction.followUp(`**${user.username}** has been blacklisted from sending feedback.`)
-          blacklistedUsers.push(userid)
-          fs.writeFileSync('./blacklisted_users.txt', JSON.stringify(blacklistedUsers));
-
-          
-          
-        })
-      }
+				const blacklistButtonDisabled =
+					new MessageActionRow().addComponents(
+						new MessageButton()
+							.setCustomId(`blacklist-disabled`)
+							.setLabel('Blacklist User')
+							.setDisabled(true)
+							.setStyle('DANGER'),
+					);
+				client.users.fetch(userid).then(async user => {
+					await interaction.update({
+						components: [blacklistButtonDisabled],
+					});
+					await interaction.followUp(
+						`**${user.username}** has been blacklisted from sending feedback.`,
+					);
+					blacklistedUsers.push(userid);
+					fs.writeFileSync(
+						'./blacklisted_users.txt',
+						JSON.stringify(blacklistedUsers),
+					);
+				});
+			}
 		}
 	},
 };

@@ -244,12 +244,14 @@ module.exports = {
 				let msgid = interaction.customId.split('-')[1];
 				const modal = new Modal()
 					.setCustomId(`Yes-${msgid}`)
-					.setTitle('Give us Some Feedback')
+					.setTitle('You found what you were looking for')
 					.addComponents(
 						new TextInputComponent()
 							.setCustomId('justify')
-							.setLabel('Your Feedback')
+							.setLabel('Is there anything else you\'d like to add.')
 							.setStyle('LONG')
+              .setMinLength(30)
+              .setMaxLength(1000)
 							.setRequired(true),
 					);
 				showModal(modal, {
@@ -259,17 +261,19 @@ module.exports = {
 			} else if (interaction.customId.startsWith('modalNo-')) {
 				mixpanel.track('Clicked Modal Open Button', {
 					distinct_id: interaction.user.id,
-					answered_question: true,
+					answered_question: false,
 				});
 				let msgid = interaction.customId.split('-')[1];
 				const modal = new Modal()
 					.setCustomId(`No-${msgid}`)
-					.setTitle('Give us Some Feedback')
+					.setTitle('You didn\'t find what you were looking for')
 					.addComponents(
 						new TextInputComponent()
 							.setCustomId('justify')
-							.setLabel('Your Feedback')
+							.setLabel('Any additional comments you\’d want to add?')
 							.setStyle('LONG')
+              .setMinLength(30)
+              .setMaxLength(1000)
 							.setRequired(true),
 					);
 				showModal(modal, {

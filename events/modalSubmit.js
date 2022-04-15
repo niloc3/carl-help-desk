@@ -16,11 +16,16 @@ module.exports = {
 			msgid,
 		);
 		sessions.removeSession(modal.user.id);
-		modal.update({
-			content: 'Thank you! Your response has been recorded.',
-			components: [],
-			ephemeral: true,
-		});
+		        const feedbackSubmitNo = new MessageEmbed()
+          .setTitle('Automated Support Feedback')
+          .setDescription('Thank you! Your response has been recorded.')
+        .setColor(0x5865F2)
+        
+				modal.update({
+					embeds: [feedbackSubmitNo],
+					components: [],
+					ephemeral: true,
+				});
     mixpanel.track('Feedback Modal Submitted', {
       distict_id: modal.user.id
     })

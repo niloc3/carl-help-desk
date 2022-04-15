@@ -296,10 +296,13 @@ module.exports = {
 						.setStyle('DANGER')
 						.setLabel('No'),
 				);
+        const isQuestionAnsweredEmbed = new MessageEmbed()
+          .setTitle('Automated Support Feedback')
+          .setDescription('Did you find what you were looking for?')
+          .setColor(0x5865F2)
 				interaction.update({
-					content: `Did I answer your question?`,
 					components: [feedbackButtons],
-					embeds: [],
+					embeds: [isQuestionAnsweredEmbed],
 					ephemeral: true,
 				});
 			} else if (interaction.customId == 'feedbackYes') {
@@ -318,12 +321,13 @@ module.exports = {
 						.setStyle('PRIMARY')
 						.setLabel('Submit'),
 				);
-
+        const questionWasAnsweredEmbed = new MessageEmbed()
+          .setTitle('Automated Support Feedback')
+          .setDescription('Glad I could help! Feel free to give additional feedback below. If not, just press submit.')
+          .setColor(0x5865F2)
 				interaction.update({
-					embeds: [],
+					embeds: [questionWasAnsweredEmbed],
 					components: [feedbackYesRow],
-					content:
-						'Glad I could help! Feel free to give additional feedback below. If not, just press submit.',
 					ephemeral: true,
 				});
 			} else if (interaction.customId == 'feedbackNo') {
@@ -343,11 +347,13 @@ module.exports = {
 						.setLabel('Submit'),
 				);
 
+        const questionWasNotAnsweredEmbed = new MessageEmbed()
+          .setTitle('Automated Support Feedback')
+          .setDescription('Sorry I couldn\'t help! Please ask in another support channel and a human will help you out. Feel free to give additional feedback below. If not, just press submit.')
+          .setColor(0x5865F2)
 				interaction.update({
-					embeds: [],
+					embeds: [questionWasNotAnsweredEmbed],
 					components: [feedbackNoRow],
-					content:
-						"Sorry I couldn't help! Please ask in another support channel and a human will help you out. Feel free to give additional feedback below. If not, just press submit.",
 					ephemeral: true,
 				});
 			} else if (interaction.customId == 'submitNo') {
@@ -355,8 +361,13 @@ module.exports = {
 					distinct_id: interaction.user.id,
 					answered_question: false,
 				});
+        const feedbackSubmitNo = new MessageEmbed()
+          .setTitle('Automated Support Feedback')
+          .setDescription('Thank you! Your response has been recorded.')
+        .setColor(0x5865F2)
+        
 				interaction.update({
-					content: 'Thank you! Your response has been recorded.',
+					embeds: [feedbackSubmitNo],
 					components: [],
 					ephemeral: true,
 				});
@@ -366,8 +377,14 @@ module.exports = {
 					distinct_id: interaction.user.id,
 					answered_question: true,
 				});
+        
+        const feedbackSubmitYes = new MessageEmbed()
+          .setTitle('Automated Support Feedback')
+          .setDescription('Thank you! Your response has been recorded.')
+        .setColor(0x5865F2)
+        
 				interaction.update({
-					content: 'Thank you! Your response has been recorded.',
+					embeds: [feedbackSubmitYes],
 					components: [],
 					ephemeral: true,
 				});

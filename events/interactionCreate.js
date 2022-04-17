@@ -247,7 +247,7 @@ module.exports = {
 								"Is there anything else you'd like to add.",
 							)
 							.setStyle('LONG')
-							.setMinLength(30)
+							.setMinLength(5)
 							.setMaxLength(1000)
 							.setRequired(true),
 					);
@@ -271,7 +271,7 @@ module.exports = {
 								'Any additional comments you’d want to add?',
 							)
 							.setStyle('LONG')
-							.setMinLength(30)
+							.setMinLength(5)
 							.setMaxLength(1000)
 							.setRequired(true),
 					);

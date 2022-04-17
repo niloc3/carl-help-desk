@@ -1,12 +1,5 @@
 const fs = require('fs')
 const prefix = `,`
-const {
-    Permissions,
-    MessageEmbed,
-    MessageActionRow,
-    MessageButton,
-    MessageSelectMenu
-} = require('discord.js');
 module.exports = {
     name: 'messageCreate',
     execute(message, client) {

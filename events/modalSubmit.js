@@ -1,6 +1,6 @@
-const {MessageEmbed} = require('discord.js');
-const {sendfile} = require('express/lib/response');
-const {sessions, sendFeedbackEmbed} = require('../helpers');
+const { MessageEmbed } = require('discord.js');
+const { sendfile } = require('express/lib/response');
+const { sessions, sendFeedbackEmbed } = require('../helpers');
 
 module.exports = {
 	name: 'modalSubmit',

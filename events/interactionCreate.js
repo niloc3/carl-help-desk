@@ -429,7 +429,7 @@ module.exports = {
 						components: [blacklistButtonDisabled],
 					});
 					await interaction.followUp(
-						`**${user.username}** has been blacklisted from sending feedback.`,
+						`${user} has been blacklisted from sending feedback.`,
 					);
 					blacklistedUsers.push(userid);
 					fs.writeFileSync(

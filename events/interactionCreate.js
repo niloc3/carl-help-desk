@@ -415,6 +415,9 @@ module.exports = {
 					'./blacklisted_users.txt',
 				);
 				let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
+        if (blacklistedUsers.includes(userid)) return interaction.reply(
+						`That user is already blacklisted from sending feedback.`,
+					);
 
 				const blacklistButtonDisabled =
 					new MessageActionRow().addComponents(

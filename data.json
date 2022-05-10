@@ -887,13 +887,13 @@
       },
       "resources":[
          {
-            "name":"Music Issue (Broken)",
+            "name":"Music",
             "embed":{
-               "color":5203894,
-               "type":"rich",
-               "description":"If you notice the music feature is not working as intended, it is because YouTube has been rate limiting Discord bots, including Carl-bot.\n\nSince it's more on YouTube's end, don't expect anything to change soon.\nIn the meantime, using Music-dedicated bots might be the solution, as they have more resources to do a workaround and keep better uptime with that specific feature.\n\nThis feature has been confirmed to be on the list of features to be removed during the rewrite of the bot. It is also no longer on the list of perks for patron users. \n\nStay tuned for eventual information about it. You can assign the `announce` role to yourself in <#445066482502729728> to get pinged for new bot announcements, and\/or follow the <#443204795910848512> channel directly in your server.",
-               "title":"Music Issue"
-            }
+                "color":5203894,
+                "type":"rich",
+                "description":"The music feature is completely gone from the bot and will not be back.\nIt existed when the bot's scale used to be way smaller, while being a way to thank financial supporters of the project.\n\nIf you still want a music bot, we recommend that you search and find dedicated music bots.\nAs an example `FredBoat` belongs to Bot Labs, just like Carl-bot, and may be a good option for you.",
+                "title":"Music"
+}
          }
       ]
    },

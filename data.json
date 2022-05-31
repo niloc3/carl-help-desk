@@ -868,9 +868,9 @@
             }
          },
          {
-            "name":"Issues with Starboard? Answer these questions!",
+            "name":"Issues with Starboard?",
             "embed":{
-               "description":"**Issues with Starboard? Answer these questions!**\n• Have you tried using the dashboard instead?\n• Are you reacting to the message with your own star?\n• What star are you using to react with it?\n• Does the bot have posting permissions in the starboard channel and viewing permissions in the channel the message is originally from?\n• How many stars are being put onto the message that are NOT your own?",
+               "description":"**Issues with Starboard? **\n• Try using the dashboard instead\n• If you want your own reaction to count turn on self star from the dashboard\n• Make sure you are reacting with ⭐\n• Make sure the bot has posting permissions in the starboard channel and viewing permissions in the channel the message is originally from?\n• Make sure the number of stars that are on the message is at your limit not including your own star if self-staring is off",
                "color":16767050
             }
          }

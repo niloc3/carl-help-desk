@@ -469,22 +469,22 @@
                "fields":[
                   {
                      "name":"Verified or Member role(s):",
-                     "value":"__`Read Messages`__ <:GreenTick:699124840879226922>\n__`Send Messages`__ <:GreySlash:699124735208063047>",
+                     "value":"__`View Channel`__ <:GreenTick:699124840879226922>\n__`Send Messages`__ <:GreySlash:699124735208063047>",
                      "inline":false
                   },
                   {
                      "name":"Mute role:",
-                     "value":"__`Read Messages`__ <:GreySlash:699124735208063047>\n__`Send Messages`__ <:RedTick:699124870352732251>",
+                     "value":"__`View Channel`__ <:GreySlash:699124735208063047>\n__`Send Messages`__ <:RedTick:699124870352732251>",
                      "inline":false
                   },
                   {
                      "name":"@everyone role:",
-                     "value":"__`Read Messages`__ <:RedTick:699124870352732251>\n__`Send Messages`__ <:GreySlash:699124735208063047>",
+                     "value":"__`View Channel`__ <:RedTick:699124870352732251>\n__`Send Messages`__ <:GreySlash:699124735208063047>",
                      "inline":false
                   },
                   {
                      "name":"⠀",
-                     "value":"> \"I don't want non-verified users talking.\n> Shouldn't I put a <:RedTick:699124870352732251> on __`Send Messages`__ for @everyone?\"\n\nNo. Your non-verified users cannot talk in channels they cannot see.\nTherefore, only the <:RedTick:699124870352732251> on __`Read Messages`__ is necessary. \nFurthermore, a <:GreenTick:699124840879226922> on __`Send Messages`__ for your Verified or Member roles would override the <:RedTick:699124870352732251> on __`Send Messages`__ for the Mute role, preventing the Mute role from actually muting users.",
+                     "value":"> \"I don't want non-verified users talking.\n> Shouldn't I put a <:RedTick:699124870352732251> on __`Send Messages`__ for @everyone?\"\n\nNo. Your non-verified users cannot talk in channels they cannot see.\nTherefore, only the <:RedTick:699124870352732251> on __`View Channel`__ is necessary. \nFurthermore, a <:GreenTick:699124840879226922> on __`Send Messages`__ for your Verified or Member roles would override the <:RedTick:699124870352732251> on __`Send Messages`__ for the Mute role, preventing the Mute role from actually muting users.",
                      "inline":false
                   }
                ],

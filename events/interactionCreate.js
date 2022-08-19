@@ -290,6 +290,18 @@ module.exports = {
 							'You have been blacklisted from using this feature.',
 						ephemeral: true,
 					});
+        if (!interaction.member.roles.cache.has('463044318299422720') && // Patreons
+            !interaction.member.roles.cache.has('585532808433238017') && // Booster
+            !interaction.member.roles.cache.has('551613871442493451') && // Honorable Freeloader
+            !interaction.member.roles.cache.has('525985386057433099') && // Proficient
+            !interaction.member.roles.cache.has('888789901443747871') && // Regular
+            !interaction.member.roles.cache.has('209797471608635392') && // Moderators
+            !interaction.member.roles.cache.has('195025754864484352') && // Dev
+            !interaction.member.roles.cache.has('219776153613893632')) // Administrators
+          return interaction.reply({
+            content: 'Only premium users have access to this feature. Become a premium user over at <https://patreon.com/carlbot>',
+            ephemeral: true
+          })
 				mixpanel.track('Clicked Feedback Button', {
 					distinct_id: interaction.user.id,
 				});

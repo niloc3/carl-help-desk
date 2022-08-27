@@ -299,7 +299,7 @@ module.exports = {
             !interaction.member.roles.cache.has('195025754864484352') && // Dev
             !interaction.member.roles.cache.has('219776153613893632')) // Administrators
           return interaction.reply({
-            content: 'Only premium users have access to this feature. Become a premium user over at <https://patreon.com/carlbot>',
+            content: 'Only premium users and boosters of this server have access to this feature. Become a premium user over at <https://patreon.com/carlbot>',
             ephemeral: true
           })
 				mixpanel.track('Clicked Feedback Button', {

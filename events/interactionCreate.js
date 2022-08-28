@@ -18,17 +18,15 @@ module.exports = {
 		let categoryRow2 = new MessageActionRow().addComponents(
 			new MessageButton()
 				.setCustomId('home')
-				.setStyle('PRIMARY') // Color-change
+				.setStyle('PRIMARY')
 				.setLabel('Home'),
-				// .setEmoji('🏠'),
 		);
 
 		let categoryRow4 = new MessageActionRow().addComponents(
 			new MessageButton()
 				.setCustomId('home')
-				.setStyle('PRIMARY') // Color-change
+				.setStyle('PRIMARY')
 				.setLabel('Home'),
-				// .setEmoji('🏠'),
 			new MessageButton()
 				.setCustomId('feedback')
 				.setStyle('SUCCESS')
@@ -42,9 +40,8 @@ module.exports = {
 				.setLabel('Back'),
 			new MessageButton()
 				.setCustomId('home')
-				.setStyle('PRIMARY') // Color-change
+				.setStyle('PRIMARY')
 				.setLabel('Home'),
-				// .setEmoji('🏠'),
 			new MessageButton()
 				.setCustomId('feedback')
 				.setStyle('SUCCESS')

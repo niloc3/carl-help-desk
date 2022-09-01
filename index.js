@@ -1,19 +1,4 @@
-const express = require('express');
-
-const app = express();
-const port = process.env.PORT || 8080;
-
-app.get('/', function(req, res) {
-  res.send('hey')
-  
-});
-
-app.listen(port);
-console.log('Server started at port: ' + port);
-
-
-//---------------------------------------------
-
+require('dotenv').config()
 const fs = require('fs');
 const Discord = require("discord.js");
 const { Client, MessageEmbed, Intents } = require("discord.js");

@@ -4,3 +4,4 @@ package-lock.json
 replit.nix
 feedback_num.txt
 blacklisted_users.txt
+.env

@@ -25,8 +25,8 @@ module.exports = {
 			components: [],
 			ephemeral: true,
 		});
-		mixpanel.track('Feedback Modal Submitted', {
-			distict_id: modal.user.id,
-		});
+		// mixpanel.track('Feedback Modal Submitted', {
+		// 	distict_id: modal.user.id,
+		// });
 	},
 };

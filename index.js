@@ -16,8 +16,8 @@ const client = new Client({
 });
 const modal = require('discord-modals')
 modal(client)
-let Mixpanel = require('mixpanel');
-let mixpanel = Mixpanel.init(process.env.MIXPANEL_TOKEN)
+let mixpanel = require('mixpanel');
+mixpanel.init(process.env.MIXPANEL_TOKEN)
 
 client.commands = new Discord.Collection();
 

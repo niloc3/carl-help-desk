@@ -15,6 +15,7 @@ let data = JSON.parse(fs.readFileSync('./data.json'));
 module.exports = {
 	name: 'interactionCreate',
 	async execute(interaction, client, Discord, mixpanel) {
+
 		let categoryRow2 = new MessageActionRow().addComponents(
 			new MessageButton()
 				.setCustomId('home')
@@ -50,10 +51,10 @@ module.exports = {
 
 		if (interaction.componentType == 'SELECT_MENU') {
 			if (interaction.customId == 'category') {
-				mixpanel.track('Category Selected', {
-					distinct_id: interaction.user.id,
-					item_selected: data[interaction.values[0]].name,
-				});
+				// mixpanel.track('Category Selected', {
+				// 	distinct_id: interaction.user.id,
+				// 	item_selected: data[interaction.values[0]].name,
+				// });
 				const selects = data[interaction.values[0]].resources
 					.map((u, i) =>
 						JSON.parse(
@@ -74,11 +75,11 @@ module.exports = {
 						components: [categoryRow4],
 						ephemeral: true,
 					});
-					mixpanel.track('Resource Selected', {
-						distinct_id: interaction.user.id,
-						item_selected:
-							data[interaction.values[0]].resources[0].name,
-					});
+					// mixpanel.track('Resource Selected', {
+					// 	distinct_id: interaction.user.id,
+					// 	item_selected:
+					// 		data[interaction.values[0]].resources[0].name,
+					// });
 					sessions.addSessionPage(interaction.user.id, [
 						data[interaction.values[0]].name,
 						data[interaction.values[0]].resources[0].name,
@@ -132,10 +133,10 @@ module.exports = {
 					components: [newSelectMenu, categoryRow3],
 					ephemeral: true,
 				});
-				mixpanel.track('Resource Selected', {
-					distinct_id: interaction.user.id,
-					item_selected: data[indexes[0]].resources[indexes[1]].name,
-				});
+				// mixpanel.track('Resource Selected', {
+				// 	distinct_id: interaction.user.id,
+				// 	item_selected: data[indexes[0]].resources[indexes[1]].name,
+				// });
 				sessions.addSessionPage(interaction.user.id, [
 					data[indexes[0]].name,
 					data[indexes[0]].resources[indexes[1]].name,
@@ -144,9 +145,9 @@ module.exports = {
 		}
 		if (interaction.componentType == 'BUTTON') {
 			if (interaction.customId == 'start') {
-				mixpanel.track('Start Button Clicked', {
-					distinct_id: interaction.user.id,
-				});
+				// mixpanel.track('Start Button Clicked', {
+				// 	distinct_id: interaction.user.id,
+				// });
 				const selects = data
 					.map((u, i) =>
 						JSON.parse(
@@ -181,18 +182,18 @@ module.exports = {
 				interaction.customId == 'home' ||
 				interaction.customId == 'feedbackBack'
 			) {
-				mixpanel.track('Home Button Clicked', {
-					distinct_id: interaction.user.id,
-				});
+				// mixpanel.track('Home Button Clicked', {
+				// 	distinct_id: interaction.user.id,
+				// });
 				interaction.update({
 					embeds: [startEmbed],
 					components: [resourceRow],
 					ephemeral: true,
 				});
 			} else if (interaction.customId == 'back') {
-				mixpanel.track('Back Button Clicked', {
-					distinct_id: interaction.user.id,
-				});
+				// mixpanel.track('Back Button Clicked', {
+				// 	distinct_id: interaction.user.id,
+				// });
 				const placeholder =
 					interaction.message.components[0].components[0].placeholder;
 				let category;
@@ -229,10 +230,10 @@ module.exports = {
 					ephemeral: true,
 				});
 			} else if (interaction.customId.startsWith('modalYes-')) {
-				mixpanel.track('Clicked Modal Open Button', {
-					distinct_id: interaction.user.id,
-					answered_question: true,
-				});
+				// mixpanel.track('Clicked Modal Open Button', {
+				// 	distinct_id: interaction.user.id,
+				// 	answered_question: true,
+				// });
 				let msgid = interaction.customId.split('-')[1];
 				const modal = new Modal()
 					.setCustomId(`Yes-${msgid}`)
@@ -253,10 +254,10 @@ module.exports = {
 					interaction: interaction,
 				});
 			} else if (interaction.customId.startsWith('modalNo-')) {
-				mixpanel.track('Clicked Modal Open Button', {
-					distinct_id: interaction.user.id,
-					answered_question: false,
-				});
+				// mixpanel.track('Clicked Modal Open Button', {
+				// 	distinct_id: interaction.user.id,
+				// 	answered_question: false,
+				// });
 				let msgid = interaction.customId.split('-')[1];
 				const modal = new Modal()
 					.setCustomId(`No-${msgid}`)
@@ -299,9 +300,9 @@ module.exports = {
             content: 'Only premium users and boosters of this server have access to this feature. Become a premium user over at <https://patreon.com/carlbot>',
             ephemeral: true
           })
-				mixpanel.track('Clicked Feedback Button', {
-					distinct_id: interaction.user.id,
-				});
+				// mixpanel.track('Clicked Feedback Button', {
+				// 	distinct_id: interaction.user.id,
+				// });
 				const feedbackButtons = new MessageActionRow().addComponents(
 					new MessageButton()
 						.setCustomId('feedbackYes')
@@ -327,10 +328,10 @@ module.exports = {
 					ephemeral: true,
 				});
 			} else if (interaction.customId == 'feedbackYes') {
-				mixpanel.track('Clicked Feedback Description Button', {
-					distinct_id: interaction.user.id,
-					answered_question: true,
-				});
+				// mixpanel.track('Clicked Feedback Description Button', {
+				// 	distinct_id: interaction.user.id,
+				// 	answered_question: true,
+				// });
 				let msgid = await sendFeedbackEmbed(interaction, true);
 				const feedbackYesRow = new MessageActionRow().addComponents(
 					new MessageButton()
@@ -355,10 +356,10 @@ module.exports = {
 				});
 				sessions.removeSession(interaction.user.id);
 			} else if (interaction.customId == 'feedbackNo') {
-				mixpanel.track('Clicked Feedback Description Button', {
-					distinct_id: interaction.user.id,
-					answered_question: false,
-				});
+				// mixpanel.track('Clicked Feedback Description Button', {
+				// 	distinct_id: interaction.user.id,
+				// 	answered_question: false,
+				// });
 				let msgid = await sendFeedbackEmbed(interaction, false);
 				const feedbackNoRow = new MessageActionRow().addComponents(
 					new MessageButton()
@@ -384,10 +385,10 @@ module.exports = {
 				});
 				sessions.removeSession(interaction.user.id);
 			} else if (interaction.customId == 'submitNo') {
-				mixpanel.track('Clicked Feedback Submit Button', {
-					distinct_id: interaction.user.id,
-					answered_question: false,
-				});
+				// mixpanel.track('Clicked Feedback Submit Button', {
+				// 	distinct_id: interaction.user.id,
+				// 	answered_question: false,
+				// });
 				const feedbackSubmitNo = new MessageEmbed()
 					.setTitle('Automated Support Feedback')
 					.setDescription(
@@ -401,10 +402,10 @@ module.exports = {
 					ephemeral: true,
 				});
 			} else if (interaction.customId == 'submitYes') {
-				mixpanel.track('Clicked Feedback Submit Button', {
-					distinct_id: interaction.user.id,
-					answered_question: true,
-				});
+				// mixpanel.track('Clicked Feedback Submit Button', {
+				// 	distinct_id: interaction.user.id,
+				// 	answered_question: true,
+				// });
 
 				const feedbackSubmitYes = new MessageEmbed()
 					.setTitle('Automated Support Feedback')

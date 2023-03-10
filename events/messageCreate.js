@@ -11,7 +11,7 @@ module.exports = {
         .setFooter({text: `Refer to rule 3, we will reply when we get to it, we don't want to be pinged.`})
         
       
-        if (message.reference && message.mentions.users.has(message.mentions.repliedUser.id) && !new RegExp(`<@!?${message.mentions.repliedUser.id}>`).test(message.content)) {
+        if (message.reference && message.mentions.users.has(message.mentions.repliedUser?.id) && !new RegExp(`<@!?${message.mentions.repliedUser?.id}>`).test(message.content)) {
           if (message.member.roles.cache.has('209797471608635392') || // Moderators
               message.member.roles.cache.has('195025754864484352') || // Dev
               message.member.roles.cache.has('219776153613893632')) return // Administrators

@@ -1,13 +1,11 @@
 const {
-	MessageEmbed,
-	MessageActionRow,
-	MessageButton,
-	MessageSelectMenu,
+	EmbedBuilder,
+	ActionRowBuilder,
+	ButtonBuilder,
+	StringSelectMenuBuilder,
 } = require('discord.js');
-const {Modal, TextInputComponent, showModal} = require('discord-modals');
-const {sendFeedbackEmbed, sessions} = require('../helpers');
 
-const startEmbed = new MessageEmbed();
+const startEmbed = new EmbedBuilder();
 let resourceRow;
 const fs = require('fs');
 let data = JSON.parse(fs.readFileSync('./data.json'));
@@ -16,40 +14,32 @@ module.exports = {
 	name: 'interactionCreate',
 	async execute(interaction, client, Discord, mixpanel) {
 
-		let categoryRow2 = new MessageActionRow().addComponents(
-			new MessageButton()
+		let categoryRow2 = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
 				.setCustomId('home')
-				.setStyle('PRIMARY')
+				.setStyle('Primary')
 				.setLabel('Home'),
 		);
 
-		let categoryRow4 = new MessageActionRow().addComponents(
-			new MessageButton()
+		let categoryRow4 = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
 				.setCustomId('home')
-				.setStyle('PRIMARY')
+				.setStyle('Primary')
 				.setLabel('Home'),
-			new MessageButton()
-				.setCustomId('feedback')
-				.setStyle('SUCCESS')
-				.setLabel('Give Feedback'),
 		);
 
-		let categoryRow3 = new MessageActionRow().addComponents(
-			new MessageButton()
+		let categoryRow3 = new ActionRowBuilder().addComponents(
+			new ButtonBuilder()
 				.setCustomId('back')
-				.setStyle('PRIMARY')
+				.setStyle('Primary')
 				.setLabel('Back'),
-			new MessageButton()
+			new ButtonBuilder()
 				.setCustomId('home')
-				.setStyle('PRIMARY')
+				.setStyle('Primary')
 				.setLabel('Home'),
-			new MessageButton()
-				.setCustomId('feedback')
-				.setStyle('SUCCESS')
-				.setLabel('Give Feedback'),
 		);
 
-		if (interaction.componentType == 'SELECT_MENU') {
+		if (interaction.componentType == 3) {
 			if (interaction.customId == 'category') {
 				// mixpanel.track('Category Selected', {
 				// 	distinct_id: interaction.user.id,
@@ -80,18 +70,15 @@ module.exports = {
 					// 	item_selected:
 					// 		data[interaction.values[0]].resources[0].name,
 					// });
-					sessions.addSessionPage(interaction.user.id, [
-						data[interaction.values[0]].name,
-						data[interaction.values[0]].resources[0].name,
-					]);
+
 				} else {
-					let categoryRow = new MessageActionRow().addComponents(
-						new MessageSelectMenu()
+					let categoryRow = new ActionRowBuilder().addComponents(
+						new StringSelectMenuBuilder()
 							.setCustomId('resources')
 							.setPlaceholder('Select a resource')
 							.addOptions(selects),
 					);
-					const categoryEmbed = new MessageEmbed()
+					const categoryEmbed = new EmbedBuilder()
 						.setColor(0x5865f2)
 						.setTitle(data[interaction.values[0]].name);
 					if (data[interaction.values[0]].category.url) {
@@ -114,8 +101,8 @@ module.exports = {
 			}
 			if (interaction.customId == 'resources') {
 				const indexes = interaction.values[0].split('-');
-				let newSelectMenu = new MessageActionRow().addComponents(
-					new MessageSelectMenu()
+				let newSelectMenu = new ActionRowBuilder().addComponents(
+					new StringSelectMenuBuilder()
 						.setCustomId(
 							interaction.message.components[0].components[0]
 								.customId,
@@ -137,13 +124,10 @@ module.exports = {
 				// 	distinct_id: interaction.user.id,
 				// 	item_selected: data[indexes[0]].resources[indexes[1]].name,
 				// });
-				sessions.addSessionPage(interaction.user.id, [
-					data[indexes[0]].name,
-					data[indexes[0]].resources[indexes[1]].name,
-				]);
+
 			}
 		}
-		if (interaction.componentType == 'BUTTON') {
+		if (interaction.componentType == 2) {
 			if (interaction.customId == 'start') {
 				// mixpanel.track('Start Button Clicked', {
 				// 	distinct_id: interaction.user.id,
@@ -167,8 +151,8 @@ module.exports = {
 				startEmbed.setDescription(
 					'Select a category from the dropdown menu below to get help.\n\nCan’t find what you’re looking for? Ask a human in another support channel.\n\nSee <#805888259934257203>',
 				);
-				resourceRow = new MessageActionRow().addComponents(
-					new MessageSelectMenu()
+				resourceRow = new ActionRowBuilder().addComponents(
+					new StringSelectMenuBuilder()
 						.setCustomId('category')
 						.setPlaceholder('Nothing Selected')
 						.addOptions(selects),
@@ -179,8 +163,7 @@ module.exports = {
 					ephemeral: true,
 				});
 			} else if (
-				interaction.customId == 'home' ||
-				interaction.customId == 'feedbackBack'
+				interaction.customId == 'home'
 			) {
 				// mixpanel.track('Home Button Clicked', {
 				// 	distinct_id: interaction.user.id,
@@ -205,8 +188,8 @@ module.exports = {
 						category = data[i];
 					}
 				}
-				let newSelectMenu = new MessageActionRow().addComponents(
-					new MessageSelectMenu()
+				let newSelectMenu = new ActionRowBuilder().addComponents(
+					new StringSelectMenuBuilder()
 						.setCustomId(
 							interaction.message.components[0].components[0]
 								.customId,
@@ -217,7 +200,7 @@ module.exports = {
 								.options,
 						),
 				);
-				const newEmbed = new MessageEmbed()
+				const newEmbed = new EmbedBuilder()
 					.setTitle(category.name)
 					.setDescription(
 						`Select a resource from the dropdown menu below to get help.\n\nMore info can be found in the [documentation](${
@@ -229,228 +212,7 @@ module.exports = {
 					components: [newSelectMenu, categoryRow2],
 					ephemeral: true,
 				});
-			} else if (interaction.customId.startsWith('modalYes-')) {
-				// mixpanel.track('Clicked Modal Open Button', {
-				// 	distinct_id: interaction.user.id,
-				// 	answered_question: true,
-				// });
-				let msgid = interaction.customId.split('-')[1];
-				const modal = new Modal()
-					.setCustomId(`Yes-${msgid}`)
-					.setTitle('You found what you were looking for')
-					.addComponents(
-						new TextInputComponent()
-							.setCustomId('justify')
-							.setLabel(
-								"Is there anything else you'd like to add.",
-							)
-							.setStyle('LONG')
-							.setMinLength(5)
-							.setMaxLength(1000)
-							.setRequired(true),
-					);
-				showModal(modal, {
-					client: client,
-					interaction: interaction,
-				});
-			} else if (interaction.customId.startsWith('modalNo-')) {
-				// mixpanel.track('Clicked Modal Open Button', {
-				// 	distinct_id: interaction.user.id,
-				// 	answered_question: false,
-				// });
-				let msgid = interaction.customId.split('-')[1];
-				const modal = new Modal()
-					.setCustomId(`No-${msgid}`)
-					.setTitle("You didn't find what you were looking for")
-					.addComponents(
-						new TextInputComponent()
-							.setCustomId('justify')
-							.setLabel(
-								'Any additional comments you’d want to add?',
-							)
-							.setStyle('LONG')
-							.setMinLength(5)
-							.setMaxLength(1000)
-							.setRequired(true),
-					);
-				showModal(modal, {
-					client: client,
-					interaction: interaction,
-				});
-			} else if (interaction.customId == 'feedback') {
-				let rawBlacklistedUsers = fs.readFileSync(
-					'./blacklisted_users.txt',
-				);
-				let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
-				if (blacklistedUsers.includes(interaction.user.id))
-					return interaction.reply({
-						content:
-							'You have been blacklisted from using this feature.',
-						ephemeral: true,
-					});
-        if (!interaction.member.roles.cache.has('463044318299422720') && // Patreons
-            !interaction.member.roles.cache.has('585532808433238017') && // Booster
-            !interaction.member.roles.cache.has('551613871442493451') && // Honorable Freeloader
-            !interaction.member.roles.cache.has('525985386057433099') && // Proficient
-            !interaction.member.roles.cache.has('888789901443747871') && // Regular
-            !interaction.member.roles.cache.has('209797471608635392') && // Moderators
-            !interaction.member.roles.cache.has('195025754864484352') && // Dev
-            !interaction.member.roles.cache.has('219776153613893632')) // Administrators
-          return interaction.reply({
-            content: 'Only premium users and boosters of this server have access to this feature. Become a premium user over at <https://patreon.com/carlbot>',
-            ephemeral: true
-          })
-				// mixpanel.track('Clicked Feedback Button', {
-				// 	distinct_id: interaction.user.id,
-				// });
-				const feedbackButtons = new MessageActionRow().addComponents(
-					new MessageButton()
-						.setCustomId('feedbackYes')
-						.setStyle('SUCCESS')
-						.setLabel('Yes'),
-					new MessageButton()
-						.setCustomId('feedbackNo')
-						.setStyle('DANGER')
-						.setLabel('No'),
-					new MessageButton()
-						.setCustomId('feedbackBack')
-						.setStyle('SECONDARY')
-						.setLabel('Back'),
-				);
-
-				const isQuestionAnsweredEmbed = new MessageEmbed()
-					.setTitle('Automated Support Feedback')
-					.setDescription('Did you find what you were looking for?')
-					.setColor(0x5865f2);
-				interaction.update({
-					components: [feedbackButtons],
-					embeds: [isQuestionAnsweredEmbed],
-					ephemeral: true,
-				});
-			} else if (interaction.customId == 'feedbackYes') {
-				// mixpanel.track('Clicked Feedback Description Button', {
-				// 	distinct_id: interaction.user.id,
-				// 	answered_question: true,
-				// });
-				let msgid = await sendFeedbackEmbed(interaction, true);
-				const feedbackYesRow = new MessageActionRow().addComponents(
-					new MessageButton()
-						.setCustomId(`modalYes-${msgid}`)
-						.setStyle('SECONDARY')
-						.setLabel('Add additional comments (optional)'),
-					new MessageButton()
-						.setCustomId('submitYes')
-						.setStyle('PRIMARY')
-						.setLabel('Submit'),
-				);
-				const questionWasAnsweredEmbed = new MessageEmbed()
-					.setTitle('Automated Support Feedback')
-					.setDescription(
-						'Glad I could help! Feel free to give additional feedback below. If not, just press submit.',
-					)
-					.setColor(0x5865f2);
-				interaction.update({
-					embeds: [questionWasAnsweredEmbed],
-					components: [feedbackYesRow],
-					ephemeral: true,
-				});
-				sessions.removeSession(interaction.user.id);
-			} else if (interaction.customId == 'feedbackNo') {
-				// mixpanel.track('Clicked Feedback Description Button', {
-				// 	distinct_id: interaction.user.id,
-				// 	answered_question: false,
-				// });
-				let msgid = await sendFeedbackEmbed(interaction, false);
-				const feedbackNoRow = new MessageActionRow().addComponents(
-					new MessageButton()
-						.setCustomId(`modalNo-${msgid}`)
-						.setStyle('SECONDARY')
-						.setLabel('Add additional comments (optional)'),
-					new MessageButton()
-						.setCustomId('submitNo')
-						.setStyle('PRIMARY')
-						.setLabel('Submit'),
-				);
-
-				const questionWasNotAnsweredEmbed = new MessageEmbed()
-					.setTitle('Automated Support Feedback')
-					.setDescription(
-						"Sorry I couldn't help! Please ask in another support channel and a human will help you out. Feel free to give additional feedback below. If not, just press submit.",
-					)
-					.setColor(0x5865f2);
-				interaction.update({
-					embeds: [questionWasNotAnsweredEmbed],
-					components: [feedbackNoRow],
-					ephemeral: true,
-				});
-				sessions.removeSession(interaction.user.id);
-			} else if (interaction.customId == 'submitNo') {
-				// mixpanel.track('Clicked Feedback Submit Button', {
-				// 	distinct_id: interaction.user.id,
-				// 	answered_question: false,
-				// });
-				const feedbackSubmitNo = new MessageEmbed()
-					.setTitle('Automated Support Feedback')
-					.setDescription(
-						'Thank you! Your response has been recorded.',
-					)
-					.setColor(0x5865f2);
-
-				interaction.update({
-					embeds: [feedbackSubmitNo],
-					components: [],
-					ephemeral: true,
-				});
-			} else if (interaction.customId == 'submitYes') {
-				// mixpanel.track('Clicked Feedback Submit Button', {
-				// 	distinct_id: interaction.user.id,
-				// 	answered_question: true,
-				// });
-
-				const feedbackSubmitYes = new MessageEmbed()
-					.setTitle('Automated Support Feedback')
-					.setDescription(
-						'Thank you! Your response has been recorded.',
-					)
-					.setColor(0x5865f2);
-
-				interaction.update({
-					embeds: [feedbackSubmitYes],
-					components: [],
-					ephemeral: true,
-				});
-			} else if (interaction.customId.startsWith('blacklist-')) {
-				let userid = interaction.customId.split('-')[1];
-				let rawBlacklistedUsers = fs.readFileSync(
-					'./blacklisted_users.txt',
-				);
-				let blacklistedUsers = JSON.parse(rawBlacklistedUsers);
-        if (blacklistedUsers.includes(userid)) return interaction.reply(
-						`That user is already blacklisted from sending feedback.`,
-					);
-
-				const blacklistButtonDisabled =
-					new MessageActionRow().addComponents(
-						new MessageButton()
-							.setCustomId(`blacklist-disabled`)
-							.setLabel('Blacklist User')
-							.setDisabled(true)
-							.setStyle('DANGER'),
-					);
-				client.users.fetch(userid).then(async user => {
-					await interaction.update({
-						components: [blacklistButtonDisabled],
-					});
-					await interaction.followUp(
-						`${user} has been blacklisted from sending feedback.`,
-					);
-					blacklistedUsers.push(userid);
-					fs.writeFileSync(
-						'./blacklisted_users.txt',
-						JSON.stringify(blacklistedUsers),
-					);
-				});
-			}
+			} 
 		}
 	},
 };

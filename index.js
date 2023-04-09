@@ -1,21 +1,21 @@
 require('dotenv').config()
 const fs = require('fs');
 const Discord = require("discord.js");
-const { Client, Intents } = require("discord.js");
+const { Client, GatewayIntentBits  } = require("discord.js");
 const client = new Client({
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.DIRECT_MESSAGES,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.GuildMessageReactions,
   ],
   partials: [
     'CHANNEL'
   ],
   allowedMentions: { parse: [], repliedUser: false }
 });
-const modal = require('discord-modals')
-modal(client)
+const cooldown = new Set();
+
 let mixpanel = require('mixpanel');
 mixpanel.init(process.env.MIXPANEL_TOKEN)
 
@@ -27,9 +27,9 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args, client, Discord, mixpanel));
+		client.once(event.name, (...args) => event.execute(...args, client, Discord, mixpanel, cooldown));
 	} else {
-		client.on(event.name, (...args) => event.execute(...args, client, Discord, mixpanel));
+		client.on(event.name, (...args) => event.execute(...args, client, Discord, mixpanel, cooldown));
 	}
 }
 

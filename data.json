@@ -923,41 +923,6 @@
       ]
    },
    {
-      "name":"Twitch (Broken currently)",
-      "keywords":[
-         "twitch",
-         "stream"
-      ],
-      "category":{
-         "name":"Notifications - Twitch",
-         "url":"https://docs.carl.gg/notifications/twitch/"
-      },
-      "resources":[
-         {
-            "name":"Twitch Issues (wondering why it's not working?)",
-            "embed":{
-               "image":{
-                  "url":"https://i.imgur.com/6zW7UXm.png",
-                  "proxy_url":"https://images-ext-2.discordapp.net/external/nn-oWawyzgu3UGZUmQdTvSCux-pwOuStfow3pIYzYeo/https/i.imgur.com/6zW7UXm.png",
-                  "width":587,
-                  "height":162
-               },
-               "fields":[
-                  {
-                     "name":"‎",
-                     "value":"Wondering why your added streamer isnt being announced? See below.",
-                     "inline":false
-                  }
-               ],
-               "color":5198940,
-               "type":"rich",
-               "description":"Currently, Carl-bot's Twitch module (!twitch and !twitch add) is unable to find Twitch channels by name or by direct Twitch URLs. Attempting to add a Twitch stream will result in a \"Could not find that channel\" output.",
-               "title":"Twitch Issues"
-            }
-         }
-      ]
-   },
-   {
       "name":"Automod (Automatic Moderation)",
       "keywords":[
          "automod",

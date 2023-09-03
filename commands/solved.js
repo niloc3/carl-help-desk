@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { MessageEmbed, ThreadChannel } = require('discord.js')
+const { EmbedBuilder, ThreadChannel } = require('discord.js')
 const SOLVED_TAG_ID = "1083454388154142750"
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
     thread.setAppliedTags(tagsAndSolved, "Marked as solved.");
     thread.setArchived(true);
 
-    const solvedEmbed = new MessageEmbed()
+    const solvedEmbed = new EmbedBuilder()
       .setTitle('Solved')
       .setDescription('Marked as solved.')
       .setColor(0x00ff00)

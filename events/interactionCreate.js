@@ -8,7 +8,7 @@ const {
 const startEmbed = new EmbedBuilder();
 let resourceRow;
 const fs = require('fs');
-let data = JSON.parse(fs.readFileSync('./data.json'));
+let data = JSON.parse(fs.readFileSync('/home/colin/help-desk/carl-help-desk/data.json'));
 
 module.exports = {
 	name: 'interactionCreate',

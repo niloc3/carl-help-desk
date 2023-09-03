@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config({ path: '/home/colin/help-desk/carl-help-desk/.env' })
 const fs = require('fs');
 const Discord = require("discord.js");
 const { Client, GatewayIntentBits  } = require("discord.js");
@@ -8,6 +8,7 @@ const client = new Client({
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.GuildMessageReactions,
+    GatewayIntentBits.MessageContent,
   ],
   partials: [
     'CHANNEL'
@@ -17,12 +18,12 @@ const client = new Client({
 const cooldown = new Set();
 
 let mixpanel = require('mixpanel');
-mixpanel.init(process.env.MIXPANEL_TOKEN)
+// mixpanel.init(process.env.MIXPANEL_TOKEN)
 
 client.commands = new Discord.Collection();
 
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('/home/colin/help-desk/carl-help-desk/events').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('/home/colin/help-desk/carl-help-desk/commands').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
@@ -43,4 +44,6 @@ process.on('unhantdledRejection', error => {
   console.error(error)
 });
 
+
+// console.log(process.env)
 client.login(process.env.TOKEN)
